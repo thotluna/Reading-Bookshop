@@ -19,7 +19,16 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+
+    /* alias */
+    "paths": {
+      "@/*": ["./src/*"],
+      "@assets/*": ["./src/assets/*"],
+      "@mod-catalogue/*": ["./src/modules/catalogue/*"],
+      "@mod-reading/*": ["./src/modules/reading/*"],
+      "@sections/*": ["./src/sections/*"]
+    }
   },
   "include": ["src", "tests", "setupTest"],
   "references": [{ "path": "./tsconfig.node.json" }]
