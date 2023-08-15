@@ -1,4 +1,4 @@
-import Image from '../components/Image'
+import { Image } from '../components/Image'
 import ReadButton from './ReadButton'
 import { BookCatalogue } from '@/modules/catalogue/domain'
 
@@ -7,7 +7,7 @@ interface Props {
   onAddReading: () => void
 }
 
-export function BookCatalogue({ book, onAddReading }: Props) {
+export function BookCatalogueComponent({ book, onAddReading }: Props) {
   return (
     <article className="relative">
       <Image className="" src={book.cover} alt={book.title} />
