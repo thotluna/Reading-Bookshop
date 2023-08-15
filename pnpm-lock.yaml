@@ -19,6 +19,9 @@ dependencies:
     version: 3.2.0(vite@4.4.9)
 
 devDependencies:
+  '@faker-js/faker':
+    specifier: ^8.0.2
+    version: 8.0.2
   '@testing-library/jest-dom':
     specifier: ^6.0.0
     version: 6.0.0(vitest@0.34.1)
@@ -58,9 +61,15 @@ devDependencies:
   eslint-plugin-react-refresh:
     specifier: ^0.4.3
     version: 0.4.3(eslint@8.47.0)
+  fishery:
+    specifier: ^2.2.2
+    version: 2.2.2
   happy-dom:
     specifier: ^10.9.0
     version: 10.9.0
+  i:
+    specifier: ^0.3.7
+    version: 0.3.7
   postcss:
     specifier: ^8.4.27
     version: 8.4.27
@@ -513,6 +522,11 @@ packages:
   /@eslint/js@8.47.0:
     resolution: {integrity: sha512-P6omY1zv5MItm93kLM8s2vr1HICJH8v0dvddDhysbIuZ+vcjOHg5Zbkf1mTkcmi2JA9oBG2anOkRnW8WJTS8Og==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+    dev: true
+
+  /@faker-js/faker@8.0.2:
+    resolution: {integrity: sha512-Uo3pGspElQW91PCvKSIAXoEgAUlRnH29sX2/p89kg7sP1m2PzCufHINd0FhTXQf6DYGiUlVncdSPa2F9wxed2A==}
+    engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0, npm: '>=6.14.13'}
     dev: true
 
   /@humanwhocodes/config-array@0.11.10:
@@ -1789,6 +1803,12 @@ packages:
       path-exists: 4.0.0
     dev: true
 
+  /fishery@2.2.2:
+    resolution: {integrity: sha512-jeU0nDhPHJkupmjX+r9niKgVMTBDB8X+U/pktoGHAiWOSyNlMd0HhmqnjrpjUOCDPJYaSSu4Ze16h6dZOKSp2w==}
+    dependencies:
+      lodash.mergewith: 4.6.2
+    dev: true
+
   /flat-cache@3.0.4:
     resolution: {integrity: sha512-dm9s5Pw7Jc0GvMYbshN6zchCA9RgQlzzEZX3vylR9IqFfS8XciblUXOKfW6SiuJ0e13eDYZoZV5wdrev7P3Nwg==}
     engines: {node: ^10.12.0 || >=12.0.0}
@@ -1974,6 +1994,11 @@ packages:
 
   /html-escaper@2.0.2:
     resolution: {integrity: sha512-H2iMtd0I4Mt5eYiapRdIDjp+XzelXQ0tFE4JS7YFwFevXXMmOp9myNrUvCg0D6ws8iqkRPBfKHgbwig1SmlLfg==}
+    dev: true
+
+  /i@0.3.7:
+    resolution: {integrity: sha512-FYz4wlXgkQwIPqhzC5TdNMLSE5+GS1IIDJZY/1ZiEPCT2S3COUVZeT5OW4BmW4r5LHLQuOosSwsvnroG9GR59Q==}
+    engines: {node: '>=0.4'}
     dev: true
 
   /iconv-lite@0.6.3:
@@ -2280,6 +2305,10 @@ packages:
 
   /lodash.merge@4.6.2:
     resolution: {integrity: sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==}
+    dev: true
+
+  /lodash.mergewith@4.6.2:
+    resolution: {integrity: sha512-GK3g5RPZWTRSeLSpgP8Xhra+pnjBC56q9FZYe1d5RN3TJ35dbkGy3YqBSMbyCrlbi+CM9Z3Jk5yTL7RCsqboyQ==}
     dev: true
 
   /lodash@4.17.21:
