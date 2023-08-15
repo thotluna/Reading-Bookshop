@@ -1,4 +1,4 @@
-export interface Autor {
+export interface Author {
   name: string
   otherBooks: string[]
 }
@@ -13,7 +13,7 @@ export interface Book {
   synopsis: string
   year: number
   ISBN: string
-  author: Autor
+  author: Author
 }
 
 export interface BookCatalogue extends Pick<Book, 'ISBN' | 'cover' | 'title'> {}
