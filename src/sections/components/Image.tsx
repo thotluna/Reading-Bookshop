@@ -14,11 +14,11 @@ interface Props {
   className?: string
 }
 
-export default function Image({ src, alt, className = '' }: Props) {
+export function Image({ src, alt, className = '' }: Props) {
   const [currentState, setCurrentState] = useState(state.LOADING)
 
   const hidden = useMemo(() => {
-    return currentState === state.LOADING ? 'hidden' : currentState === state.ERROR ? 'hidden' : 'block'
+    return currentState === state.LOADING || currentState === state.ERROR ? 'hidden' : 'block'
   }, [currentState])
 
   return (
