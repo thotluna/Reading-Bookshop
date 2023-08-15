@@ -5,7 +5,7 @@
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "module": "ESNext",
     "skipLibCheck": true,
-    "types": ["vite-plugin-svgr/client"],
+    "types": ["vite-plugin-svgr/client", "vitest/globals"],
 
     /* Bundler mode */
     "moduleResolution": "bundler",
@@ -27,9 +27,10 @@
       "@assets/*": ["./src/assets/*"],
       "@mod-catalogue/*": ["./src/modules/catalogue/*"],
       "@mod-reading/*": ["./src/modules/reading/*"],
-      "@sections/*": ["./src/sections/*"]
+      "@sections/*": ["./src/sections/*"],
+      "@sec-catalogue/*": ["./src/sections/catalogue/*"]
     }
   },
-  "include": ["src", "tests", "setupTest"],
+  "include": ["src", "src/tests", "setupTest"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

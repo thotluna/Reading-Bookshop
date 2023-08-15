@@ -18,7 +18,8 @@ export default defineConfig({
       '@assets': path.resolve(__dirname, './src/assets'),
       '@mod-catalogue': path.resolve(__dirname, './src/modules/catalogue'),
       '@mod-reading': path.resolve(__dirname, './src/modules/reading'),
-      '@sections': path.resolve(__dirname, './src/sections')
+      '@sections': path.resolve(__dirname, './src/sections'),
+      '@sec-catalogue': path.resolve(__dirname, './src/sections/catalogue')
     }
   }
 })
