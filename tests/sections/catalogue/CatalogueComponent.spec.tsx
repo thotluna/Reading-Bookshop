@@ -1,8 +1,8 @@
+import React from 'react'
 import { describe, vi } from 'vitest'
 import { Catalogue, CatalogueRepository } from '../../../src/modules/catalogue/domain'
 import { render, screen } from '@testing-library/react'
 import { CatalogueComponent } from '../../../src/sections/catalogue'
-import React from 'react'
 import { BookMother } from '../../modules/catalogue/domain/models'
 
 describe('CatalogueComponent', () => {
@@ -21,8 +21,7 @@ describe('CatalogueComponent', () => {
     const title = screen.queryByText(/catalogo/i)
     expect(title).toBeInTheDocument()
 
-    expect(screen.queryByText(/total/i)).toHaveTextContent(' 0')
-    expect(screen.queryByText(/disponibles:/i)).toHaveTextContent(' 0')
+    expect(screen.queryByText(/disponibles:/i)).toHaveTextContent(' 0/0')
   })
   describe('without books', () => {
     it('should render the total and available book count to 0', async () => {
@@ -37,10 +36,8 @@ describe('CatalogueComponent', () => {
 
       render(<CatalogueComponent repository={repository} />)
 
-      const total = await screen.findByText(/total/i)
-      expect(total).toHaveTextContent(' 0')
       const available = await screen.findByText(/disponibles:/i)
-      expect(available).toHaveTextContent(' 0')
+      expect(available).toHaveTextContent(' 0/0')
     })
     it('should render the messages of not having books available', async () => {
       const state: Catalogue = {
@@ -76,11 +73,9 @@ describe('CatalogueComponent', () => {
 
       await screen.findAllByRole('button', { name: /leer/i })
 
-      const total = await screen.findByText(/total/i)
       const available = await screen.findByText(/disponibles:/i)
 
-      expect(total).toHaveTextContent(` ${book.length}`)
-      expect(available).toHaveTextContent(` ${book.length}`)
+      expect(available).toHaveTextContent(` ${book.length}/${book.length}`)
     })
   })
 })
