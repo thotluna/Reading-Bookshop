@@ -11,7 +11,7 @@ export function BookCatalogueComponent({ book, onAddReading }: Props) {
   return (
     <article className="relative">
       <Image className="" src={book.cover} alt={book.title} />
-      <ReadButton clasName="absolute top-2 right-2 bg-black" onAddReading={onAddReading} />
+      <ReadButton clasName="absolute top-3 right-2 bg-black" onAddReading={onAddReading} />
     </article>
   )
 }
