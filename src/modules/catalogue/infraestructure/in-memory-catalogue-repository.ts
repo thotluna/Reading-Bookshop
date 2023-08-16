@@ -21,6 +21,20 @@ function getCatalogo(filters?: FiltersState): Promise<Catalogue> {
     books = books.filter((book) => book.pages >= filters.nPages)
   }
 
+  if (filters && filters?.search) {
+    books = books.filter((book) => {
+      const search = filters.search?.toLowerCase()
+      const author = book.author.name.toLowerCase()
+      const gender = book.genre.toLowerCase()
+      const synopsis = book.synopsis.toLowerCase()
+      const title = book.title.toLowerCase()
+
+      if (!search) return false
+
+      return author.includes(search) || gender.includes(search) || synopsis.includes(search) || title.includes(search)
+    })
+  }
+
   const avalaible = books.length
 
   return Promise.resolve({

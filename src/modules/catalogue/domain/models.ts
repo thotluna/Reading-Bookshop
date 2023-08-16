@@ -27,4 +27,5 @@ export interface Catalogue {
 export interface FiltersState {
   genders: Gender[]
   nPages: number
+  search?: string
 }

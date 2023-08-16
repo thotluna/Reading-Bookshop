@@ -1,24 +1,66 @@
 import { GetCatalogue } from '@/modules/catalogue/application'
-import { BookCatalogue, Catalogue, CatalogueRepository, FiltersState } from '@/modules/catalogue/domain'
+import { BookCatalogue, Catalogue, CatalogueRepository, FiltersState, Gender } from '@/modules/catalogue/domain'
 import { useEffect, useState } from 'react'
 import { CatalogoBookCollection } from './CatalogoBookCollection'
 import { CatalogueEmpty } from './CatalogueEmpty'
+import { Filters } from '../Filters'
 
 interface Props {
   repository: CatalogueRepository
-  filters?: FiltersState | undefined
 }
 
-export function CatalogueComponent({ repository, filters }: Props) {
+export function CatalogueComponent({ repository }: Props) {
   const [state, setState] = useState<Catalogue>({ books: [], total: 0, avalaible: 0 })
+  const [stateFilters, setStateFilters] = useState<FiltersState>({
+    genders: [],
+    nPages: 0,
+    search: undefined
+  })
+
+  const [search, setSearch] = useState('')
 
   useEffect(() => {
-    GetCatalogue(repository, filters).then(setState)
-  }, [repository, filters])
+    GetCatalogue(repository, stateFilters).then(setState)
+  }, [repository, stateFilters])
 
   const addReadingHandler = (book: BookCatalogue) => {
     book
   }
+
+  const isGenderHandler = (gender: Gender) => {
+    return stateFilters.genders.includes(gender)
+  }
+
+  const onChangeGenderHandler = (gender: Gender) => {
+    setStateFilters((prev) => {
+      return {
+        ...prev,
+        genders: stateFilters.genders.includes(gender)
+          ? stateFilters.genders.filter((g) => g !== gender)
+          : stateFilters.genders.concat(gender)
+      }
+    })
+  }
+
+  const onChangePage = (nPages: number) => {
+    setStateFilters((prev) => {
+      return { ...prev, nPages }
+    })
+  }
+
+  const onSearch = (search: string) => {
+    setStateFilters((prev) => {
+      return { ...prev, search }
+    })
+  }
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      onSearch(search)
+    }, 500)
+
+    return () => clearTimeout(timeout)
+  }, [search])
 
   return (
     <section className="w-full h-full flex-1 flex flex-col">
@@ -28,6 +70,15 @@ export function CatalogueComponent({ repository, filters }: Props) {
           Libros Disponibles: {state.avalaible}/{state.total}
         </h2>
       </header>
+      <Filters
+        nPage={stateFilters.nPages}
+        isChecked={isGenderHandler}
+        onChangeGender={onChangeGenderHandler}
+        onChangePage={onChangePage}
+        onSearch={onSearch}
+        search={search}
+        setSearch={setSearch}
+      />
       <CatalogueEmpty collection={state.books} />
       <CatalogoBookCollection collection={state.books} onAddReading={addReadingHandler} />
     </section>
