@@ -23,7 +23,7 @@ export function Image({ src, alt, className = '' }: Props) {
 
   return (
     <div
-      className={`max-h-[15rem] borderborder-slate-400 flex items-center justify-center overflow-hidden ${className}`}
+      className={`max-h-[13rem] borderborder-slate-400 flex items-center justify-center overflow-hidden ${className}`}
     >
       {currentState === state.LOADING && <ImageLoader />}
       {currentState === state.ERROR && <ImageBroken className="w-20" aria-label="Error al descargar la Imagen" />}
