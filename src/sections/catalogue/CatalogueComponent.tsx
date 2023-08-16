@@ -75,7 +75,6 @@ export function CatalogueComponent({ repository }: Props) {
         isChecked={isGenderHandler}
         onChangeGender={onChangeGenderHandler}
         onChangePage={onChangePage}
-        onSearch={onSearch}
         search={search}
         setSearch={setSearch}
       />

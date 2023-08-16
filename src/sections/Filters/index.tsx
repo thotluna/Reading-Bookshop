@@ -8,21 +8,11 @@ interface Props {
   isChecked: (gender: Gender) => boolean
   onChangeGender: (gender: Gender) => void
   onChangePage: (nPage: number) => void
-  onSearch: (search: string) => void
   search: string
   setSearch: (search: string) => void
 }
 
-export function Filters({ nPage, isChecked, onChangeGender, onChangePage, onSearch, search, setSearch }: Props) {
-  const onSubmitHandler = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-    const target = event.currentTarget
-
-    const search = target.search.value
-
-    onSearch(search)
-  }
-
+export function Filters({ nPage, isChecked, onChangeGender, onChangePage, search, setSearch }: Props) {
   return (
     <article className="px-8 pb-4 flex flex-col gap-1">
       <div className="flex flex-wrap gap-3">
@@ -35,12 +25,12 @@ export function Filters({ nPage, isChecked, onChangeGender, onChangePage, onSear
           ))}
         </ul>
         <div className="flex items-center gap-1">
-          <label className="inline pr-1" htmlFor="range-component">
+          <label className="inline pr-1" htmlFor="range">
             Max Paginas:
           </label>
           <input
             className="inline"
-            id="rage-component"
+            id="range"
             type="range"
             min={10}
             max={2000}
@@ -50,13 +40,13 @@ export function Filters({ nPage, isChecked, onChangeGender, onChangePage, onSear
           />
         </div>
       </div>
-      <form className="flex items-center gap-1" onSubmit={(event) => onSubmitHandler(event)}>
+      <div className="flex items-center gap-1">
         <label htmlFor="search">Busqueda:</label>
         <input id="search" type="text" value={search} onChange={(event) => setSearch(event.target.value)} />
         <button className="">
           <SearchIcon width={18} height={18} aria-label="search" />
         </button>
-      </form>
+      </div>
     </article>
   )
 }
