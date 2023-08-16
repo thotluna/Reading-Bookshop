@@ -22,13 +22,14 @@
     "noFallthroughCasesInSwitch": true,
 
     /* alias */
+    "baseUrl": "./src",
     "paths": {
-      "@/*": ["./src/*"],
-      "@assets/*": ["./src/assets/*"],
-      "@mod-catalogue/*": ["./src/modules/catalogue/*"],
-      "@mod-reading/*": ["./src/modules/reading/*"],
-      "@sections/*": ["./src/sections/*"],
-      "@sec-catalogue/*": ["./src/sections/catalogue/*"]
+      "@/*": ["./*"],
+      "@assets/*": ["./assets/*"],
+      "@mod-catalogue/*": ["./modules/catalogue/*"],
+      "@mod-reading/*": ["./modules/reading/*"],
+      "@sections/*": ["./sections/*"],
+      "@sec-catalogue/*": ["./sections/catalogue/*"]
     }
   },
   "include": ["src", "src/tests", "setupTest"],
