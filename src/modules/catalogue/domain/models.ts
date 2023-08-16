@@ -23,3 +23,8 @@ export interface Catalogue {
   total: number
   avalaible: number
 }
+
+export interface FiltersState {
+  genders: Gender[]
+  nPages: number
+}

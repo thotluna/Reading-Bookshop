@@ -1,6 +1,6 @@
 import { CatalogueRepository } from '../../domain/catalogue-repository'
-import { Catalogue } from '../../domain/models'
+import { Catalogue, FiltersState } from '../../domain/models'
 
-export const GetCatalogue = (repository: CatalogueRepository): Promise<Catalogue> => {
-  return repository.getCatalogue()
+export const GetCatalogue = (repository: CatalogueRepository, filters?: FiltersState): Promise<Catalogue> => {
+  return repository.getCatalogue(filters)
 }

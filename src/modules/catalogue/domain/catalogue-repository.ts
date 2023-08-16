@@ -1,5 +1,5 @@
-import { Catalogue } from './models'
+import { Catalogue, FiltersState } from './models'
 
 export interface CatalogueRepository {
-  getCatalogue: () => Promise<Catalogue>
+  getCatalogue: (filters?: FiltersState) => Promise<Catalogue>
 }

@@ -1,19 +1,20 @@
 import { GetCatalogue } from '@/modules/catalogue/application'
-import { BookCatalogue, Catalogue, CatalogueRepository } from '@/modules/catalogue/domain'
+import { BookCatalogue, Catalogue, CatalogueRepository, FiltersState } from '@/modules/catalogue/domain'
 import { useEffect, useState } from 'react'
 import { CatalogoBookCollection } from './CatalogoBookCollection'
 import { CatalogueEmpty } from './CatalogueEmpty'
 
 interface Props {
   repository: CatalogueRepository
+  filters?: FiltersState | undefined
 }
 
-export function CatalogueComponent({ repository }: Props) {
+export function CatalogueComponent({ repository, filters }: Props) {
   const [state, setState] = useState<Catalogue>({ books: [], total: 0, avalaible: 0 })
 
   useEffect(() => {
-    GetCatalogue(repository).then(setState)
-  }, [repository])
+    GetCatalogue(repository, filters).then(setState)
+  }, [repository, filters])
 
   const addReadingHandler = (book: BookCatalogue) => {
     book
