@@ -1,15 +1,25 @@
 import { CatalogoBookCollection } from '@sec-catalogue/CatalogoBookCollection'
-import { BookMother } from '../../../tests/modules/catalogue/domain/models'
-const booksFail = BookMother.createList(5)
+import { BookCatalogue } from '@/modules/catalogue/domain'
+import { ReadingState } from '@/modules/reading/domain/models'
+import { useMemo } from 'react'
 
-export function ReadingComponent() {
+interface Props {
+  state: ReadingState
+  toToggleBook: (book: BookCatalogue) => void
+}
+
+export function ReadingComponent({ state, toToggleBook }: Props) {
+  const hidden = useMemo(() => {
+    return state.show ? 'visible' : 'hidden'
+  }, [state.show])
+
   return (
-    <section className="w-1/4">
+    <section className={`w-1/4, ${hidden}`}>
       <header className="px-2 md:px-8 md:py-4 flex flex-wrap gap-2 items-end justify-start">
         <h2 className="text-4xl md:text-6xl ">Leer</h2>
-        <h2 className="text-2xl text-slate-500">Libros por Leer: 5</h2>
+        <h2 className="text-2xl text-slate-500">Libros por Leer: {state.total}</h2>
       </header>
-      <CatalogoBookCollection collection={booksFail} onAddReading={() => {}} />
+      <CatalogoBookCollection collection={state.books} onAddReading={toToggleBook} />
     </section>
   )
 }

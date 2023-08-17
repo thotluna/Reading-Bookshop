@@ -7,9 +7,10 @@ import { Filters } from '../Filters'
 
 interface Props {
   repository: CatalogueRepository
+  toToggleBook: (book: BookCatalogue) => void
 }
 
-export function CatalogueComponent({ repository }: Props) {
+export function CatalogueComponent({ repository, toToggleBook }: Props) {
   const [state, setState] = useState<Catalogue>({ books: [], total: 0, avalaible: 0 })
   const [stateFilters, setStateFilters] = useState<FiltersState>({
     genders: [],
@@ -22,10 +23,6 @@ export function CatalogueComponent({ repository }: Props) {
   useEffect(() => {
     GetCatalogue(repository, stateFilters).then(setState)
   }, [repository, stateFilters])
-
-  const addReadingHandler = (book: BookCatalogue) => {
-    book
-  }
 
   const isGenderHandler = (gender: Gender) => {
     return stateFilters.genders.includes(gender)
@@ -79,7 +76,7 @@ export function CatalogueComponent({ repository }: Props) {
         setSearch={setSearch}
       />
       <CatalogueEmpty collection={state.books} />
-      <CatalogoBookCollection collection={state.books} onAddReading={addReadingHandler} />
+      <CatalogoBookCollection collection={state.books} onAddReading={toToggleBook} />
     </section>
   )
 }
