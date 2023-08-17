@@ -6,7 +6,7 @@ import { CatalogueComponent } from '../../../src/sections/catalogue'
 import { BookMother } from '../../modules/catalogue/domain/models'
 
 describe('CatalogueComponent', () => {
-  it('should render title', () => {
+  it('should render title', async () => {
     const state: Catalogue = {
       books: [],
       total: 0,
@@ -16,13 +16,16 @@ describe('CatalogueComponent', () => {
       getCatalogue: vi.fn().mockResolvedValue(Promise.resolve(state))
     }
 
-    render(<CatalogueComponent repository={repository} />)
+    render(<CatalogueComponent repository={repository} toToggleBook={() => {}} />)
 
-    const title = screen.queryByText(/catalogo/i)
-    expect(title).toBeInTheDocument()
+    await waitFor(async () => {
+      const title = screen.queryByText(/catalogo/i)
+      expect(title).toBeInTheDocument()
 
-    expect(screen.queryByText(/disponibles:/i)).toHaveTextContent(' 0/0')
+      expect(screen.queryByText(/disponibles:/i)).toHaveTextContent(' 0/0')
+    })
   })
+
   describe('without books', () => {
     it('should render the total and available book count to 0', async () => {
       const state: Catalogue = {
@@ -34,11 +37,12 @@ describe('CatalogueComponent', () => {
         getCatalogue: vi.fn().mockResolvedValue(Promise.resolve(state))
       }
 
-      render(<CatalogueComponent repository={repository} />)
+      render(<CatalogueComponent repository={repository} toToggleBook={() => {}} />)
 
       const available = await screen.findByText(/disponibles:/i)
       expect(available).toHaveTextContent(' 0/0')
     })
+
     it('should render the messages of not having books available', async () => {
       const state: Catalogue = {
         books: [],
@@ -49,7 +53,7 @@ describe('CatalogueComponent', () => {
         getCatalogue: vi.fn().mockResolvedValue(Promise.resolve(state))
       }
 
-      render(<CatalogueComponent repository={repository} />)
+      render(<CatalogueComponent repository={repository} toToggleBook={() => {}} />)
 
       const title = await screen.findByText('Uff! Actualmente no contamos con libros disponibles.')
       expect(title).toBeInTheDocument()
@@ -69,17 +73,13 @@ describe('CatalogueComponent', () => {
         getCatalogue: vi.fn().mockResolvedValue(Promise.resolve(state))
       }
 
-      render(<CatalogueComponent repository={repository} />)
+      render(<CatalogueComponent repository={repository} toToggleBook={() => {}} />)
 
       await screen.findAllByRole('button', { name: /leer/i })
 
       const available = await screen.findByText(/disponibles:/i)
 
       expect(available).toHaveTextContent(` ${book.length}/${book.length}`)
-    })
-
-    it.skip('should return book when is clicked', async () => {
-      //TODO: implement
     })
 
     describe('having', () => {
@@ -106,7 +106,7 @@ describe('CatalogueComponent', () => {
 
         const spy = vi.spyOn(repository, 'getCatalogue')
 
-        render(<CatalogueComponent repository={repository} />)
+        render(<CatalogueComponent repository={repository} toToggleBook={() => {}} />)
 
         const genderFantasy = screen.queryByLabelText('Fantasía')
         expect(genderFantasy).toBeInTheDocument()
@@ -135,6 +135,7 @@ describe('CatalogueComponent', () => {
           })
         })
       })
+
       it('page filters, should render a book list', async () => {
         const books = BookMother.createList(10)
         const bookFiltered = books.filter((book) => book.pages === books[0].pages)
@@ -158,7 +159,7 @@ describe('CatalogueComponent', () => {
 
         const spy = vi.spyOn(repository, 'getCatalogue')
 
-        render(<CatalogueComponent repository={repository} />)
+        render(<CatalogueComponent repository={repository} toToggleBook={() => {}} />)
 
         const slider: HTMLInputElement = screen.getByRole('slider', { name: /Max Paginas:/ })
         fireEvent.change(slider, { target: { value: 170 } })
@@ -179,6 +180,7 @@ describe('CatalogueComponent', () => {
           })
         })
       })
+
       it('search filters, should render a book list', async () => {
         const books: Book[] = BookMother.createList(10)
         const search = books[0].title.split('')[0].toLowerCase()
@@ -210,7 +212,7 @@ describe('CatalogueComponent', () => {
         }
         const spy = vi.spyOn(repository, 'getCatalogue')
 
-        render(<CatalogueComponent repository={repository} />)
+        render(<CatalogueComponent repository={repository} toToggleBook={() => {}} />)
 
         const searchElement: HTMLInputElement = screen.getByRole('textbox', { name: /Busqueda/i })
         expect(searchElement).toBeInTheDocument()
@@ -284,7 +286,7 @@ describe('CatalogueComponent', () => {
 
         const spy = vi.spyOn(repository, 'getCatalogue')
 
-        render(<CatalogueComponent repository={repository} />)
+        render(<CatalogueComponent repository={repository} toToggleBook={() => {}} />)
 
         const genderFantasy = screen.queryByLabelText(gender)
         expect(genderFantasy).toBeInTheDocument()
