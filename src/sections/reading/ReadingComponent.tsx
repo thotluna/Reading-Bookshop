@@ -1,14 +1,14 @@
-import { CatalogoBookCollection } from '@sec-catalogue/CatalogoBookCollection'
-import { BookCatalogue } from '@/modules/catalogue/domain'
-import { ReadingState } from '@/modules/reading/domain/models'
+import { BookReading, ReadingState } from '@mod-reading/domain'
 import { useMemo } from 'react'
+import { ReadingBookCollection } from './ReadingBookCollection'
+import { ReadingEmpty } from './ReadingEmpty'
 
 interface Props {
   state: ReadingState
-  toToggleBook: (book: BookCatalogue) => void
+  onRemoveBook: (book: BookReading) => void
 }
 
-export function ReadingComponent({ state, toToggleBook }: Props) {
+export function ReadingComponent({ state, onRemoveBook }: Props) {
   const hidden = useMemo(() => {
     return state.show ? 'visible' : 'hidden'
   }, [state.show])
@@ -19,7 +19,8 @@ export function ReadingComponent({ state, toToggleBook }: Props) {
         <h2 className="text-4xl md:text-6xl ">Leer</h2>
         <h2 className="text-2xl text-slate-500">Libros por Leer: {state.total}</h2>
       </header>
-      <CatalogoBookCollection collection={state.books} onAddReading={toToggleBook} />
+      <ReadingBookCollection collection={state.books} onRemoveBook={onRemoveBook} />
+      <ReadingEmpty collection={state.books} />
     </section>
   )
 }

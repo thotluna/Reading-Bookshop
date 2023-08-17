@@ -4,7 +4,7 @@ import { Header } from '@sections/header/Header'
 import { ReadingComponent } from './sections/reading/ReadingComponent'
 import { useState } from 'react'
 import { BookCatalogue } from './modules/catalogue/domain'
-import { ReadingState } from './modules/reading/domain/models'
+import { BookReading, ReadingState } from './modules/reading/domain/models'
 
 function App() {
   const repository = InMemoryCatalogueRepository()
@@ -17,13 +17,24 @@ function App() {
   const toToggleHandler = (book: BookCatalogue) => {
     const books = readingState.books.some((b) => b.ISBN === book.ISBN)
       ? readingState.books.filter((b) => b.ISBN !== book.ISBN)
-      : readingState.books.concat(book)
+      : readingState.books.concat({ ...book, position: Number.MAX_SAFE_INTEGER })
     const state = {
       ...readingState,
       books,
       total: books.length
     }
     setReadingState(state)
+  }
+
+  const onRemoveBook = (book: BookReading) => {
+    setReadingState((prev) => {
+      const books = prev.books.concat(book)
+      return {
+        ...readingState,
+        books,
+        total: books.length
+      }
+    })
   }
 
   const onToggleShowHandler = () => {
@@ -41,7 +52,7 @@ function App() {
       <main className="container mx-auto">
         <div className="w-full flex justify-between">
           <CatalogueComponent repository={repository} toToggleBook={toToggleHandler} />
-          <ReadingComponent toToggleBook={toToggleHandler} state={readingState} />
+          <ReadingComponent onRemoveBook={onRemoveBook} state={readingState} />
         </div>
       </main>
     </div>

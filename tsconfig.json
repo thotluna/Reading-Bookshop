@@ -29,7 +29,8 @@
       "@mod-catalogue/*": ["./modules/catalogue/*"],
       "@mod-reading/*": ["./modules/reading/*"],
       "@sections/*": ["./sections/*"],
-      "@sec-catalogue/*": ["./sections/catalogue/*"]
+      "@sec-catalogue/*": ["./sections/catalogue/*"],
+      "@sec-reading/*": ["./sections/reading/*"]
     }
   },
   "include": ["src", "src/tests", "setupTest"],
