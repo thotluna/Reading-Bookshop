@@ -28,7 +28,7 @@ function App() {
 
   const onRemoveBook = (book: BookReading) => {
     setReadingState((prev) => {
-      const books = prev.books.concat(book)
+      const books = prev.books.filter((bookInMemory) => bookInMemory.ISBN !== book.ISBN)
       return {
         ...readingState,
         books,
