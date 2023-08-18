@@ -1,4 +1,3 @@
-import React from 'react'
 import { describe, expect, vi } from 'vitest'
 import { Book, Catalogue, CatalogueRepository } from '../../../src/modules/catalogue/domain'
 import { fireEvent, render, screen, waitFor } from '@testing-library/react'
