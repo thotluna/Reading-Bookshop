@@ -1,6 +1,5 @@
 import { Gender } from '@/modules/catalogue/domain'
 import { ReactComponent as SearchIcon } from '@assets/search.svg'
-import React from 'react'
 
 const GENDERS: Gender[] = ['Fantasía', 'Ciencia ficción', 'Zombies', 'Terror']
 interface Props {

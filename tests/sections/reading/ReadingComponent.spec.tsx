@@ -1,8 +1,8 @@
-import { describe, it } from 'vitest'
 import { fireEvent, render, screen } from '@testing-library/react'
-import { ReadingComponent } from '../../../src/sections/reading/ReadingComponent'
-import { BookReading, ReadingState } from '../../../src/modules/reading/domain/models'
+import { describe, it } from 'vitest'
 import { Book } from '../../../src/modules/catalogue/domain'
+import { BookReading, ReadingState } from '../../../src/modules/reading/domain/models'
+import { ReadingComponent } from '../../../src/sections/reading/ReadingComponent'
 import { BookMother } from '../../modules/catalogue/domain/models'
 
 describe('Reading Component', () => {

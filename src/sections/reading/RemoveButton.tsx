@@ -1,5 +1,5 @@
-import CircleButton from '../components/CircleButton'
 import { ReactComponent as TrashIcon } from '@assets/trash.svg'
+import CircleButton from '../components/CircleButton'
 
 interface Props {
   title: string

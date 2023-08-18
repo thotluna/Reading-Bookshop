@@ -1,6 +1,6 @@
-import { Factory } from 'fishery'
-import { faker } from '@faker-js/faker'
 import { Author, Book } from '@/modules/catalogue/domain'
+import { faker } from '@faker-js/faker'
+import { Factory } from 'fishery'
 
 const AuthorFactory = Factory.define<Author>(() => ({
   name: faker.person.fullName(),

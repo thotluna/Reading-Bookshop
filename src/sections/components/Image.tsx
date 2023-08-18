@@ -1,5 +1,5 @@
-import { useMemo, useState } from 'react'
 import { ReactComponent as ImageBroken } from '@assets/image-broken.svg'
+import { useMemo, useState } from 'react'
 import { ImageLoader } from './image-loader'
 
 const enum state {

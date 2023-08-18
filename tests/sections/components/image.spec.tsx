@@ -2,7 +2,6 @@ import { faker } from '@faker-js/faker'
 import { render, screen, waitForElementToBeRemoved } from '@testing-library/react'
 import { describe } from 'vitest'
 import { Image } from '../../../src/sections/components'
-import React from 'react'
 
 describe('Image component', () => {
   it('should render a Loading', async () => {

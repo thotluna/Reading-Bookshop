@@ -1,10 +1,10 @@
 import { InMemoryCatalogueRepository } from '@mod-catalogue/infraestructure'
 import { CatalogueComponent } from '@sec-catalogue/CatalogueComponent'
 import { Header } from '@sections/header/Header'
-import { ReadingComponent } from './sections/reading/ReadingComponent'
 import { useState } from 'react'
 import { BookCatalogue } from './modules/catalogue/domain'
 import { BookReading, ReadingState } from './modules/reading/domain/models'
+import { ReadingComponent } from './sections/reading/ReadingComponent'
 
 function App() {
   const repository = InMemoryCatalogueRepository()

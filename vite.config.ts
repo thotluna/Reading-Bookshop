@@ -1,8 +1,8 @@
 /// <reference types="vite-plugin-svgr/client" />
-import { defineConfig } from 'vitest/config'
 import react from '@vitejs/plugin-react-swc'
-import svgr from 'vite-plugin-svgr'
 import path from 'path'
+import svgr from 'vite-plugin-svgr'
+import { defineConfig } from 'vitest/config'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -21,7 +21,8 @@ export default defineConfig({
       '@mod-reading': path.resolve(__dirname, './src/modules/reading'),
       '@sections': path.resolve(__dirname, './src/sections'),
       '@sec-catalogue': path.resolve(__dirname, './src/sections/catalogue'),
-      '@sec-reading': path.resolve(__dirname, './src/sections/reading')
+      '@sec-reading': path.resolve(__dirname, './src/sections/reading'),
+      '@sec-components': path.resolve(__dirname, './src/sections/components')
     }
   }
 })

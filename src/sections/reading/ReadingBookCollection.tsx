@@ -1,5 +1,5 @@
-import { BookReadingComponent } from '.'
 import { BookReading } from '@mod-reading/domain'
+import { BookReadingComponent } from '.'
 
 interface Props {
   collection: BookReading[]

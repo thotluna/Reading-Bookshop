@@ -1,5 +1,5 @@
-import { ReactComponent as ShowIcon } from '@assets/show.svg'
 import { ReactComponent as HiddenIcon } from '@assets/hide.svg'
+import { ReactComponent as ShowIcon } from '@assets/show.svg'
 
 interface Props {
   show: boolean

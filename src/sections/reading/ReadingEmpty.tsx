@@ -1,5 +1,5 @@
-import { BookReading } from '@mod-reading/domain'
 import { ReactComponent as SearchDraw } from '@assets/search-draw.svg'
+import { BookReading } from '@mod-reading/domain'
 
 interface Props {
   collection: BookReading[]

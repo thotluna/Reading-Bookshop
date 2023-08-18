@@ -1,7 +1,7 @@
-import { describe, it } from 'vitest'
-import { render, screen } from '@testing-library/react'
-import { BookMother } from '../../modules/catalogue/domain/models'
 import { BookCatalogueComponent } from '@sec-catalogue/BookCatalogueComponent'
+import { render, screen } from '@testing-library/react'
+import { describe, it } from 'vitest'
+import { BookMother } from '../../modules/catalogue/domain/models'
 
 describe.only('BookCatlogue', () => {
   it.only('should render image', async () => {
