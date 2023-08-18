@@ -9,8 +9,9 @@ export default defineConfig({
   plugins: [react(), svgr()],
   test: {
     globals: true,
+    include: ['**/*.spec.{js,ts,jsx,tsx}'],
     environment: 'happy-dom',
-    setupFiles: ['./setupTest.ts']
+    setupFiles: ['./src/setupTest.ts']
   },
   resolve: {
     alias: {
