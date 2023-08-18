@@ -9,9 +9,9 @@ interface Props {
 
 export function BookCatalogueComponent({ book, onAddReading }: Props) {
   return (
-    <article className="relative">
-      <Image className="" src={book.cover} alt={book.title} />
-      <ReadButton clasName="absolute top-3 right-2 bg-black" onAddReading={onAddReading} />
+    <article data-testid="book-catalogue" className="relative">
+      <Image className="" src={book.cover} alt={`Titulo: ${book.title}`} />
+      <ReadButton title={book.title} clasName="absolute top-3 right-2 bg-black" onAddReading={onAddReading} />
     </article>
   )
 }

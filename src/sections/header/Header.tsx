@@ -11,8 +11,8 @@ export function Header({ show, onToggleShow }: Props) {
     <header className="w-full flex items-end justify-between px-2 md:px-8">
       <h1 className="text-5xl md:text-8xl text-blue-400">Reading Bookshop</h1>
       <button onClick={onToggleShow}>
-        {show && <HiddenIcon className="w-6 h-6" aria-label="Mostrar libros por leer" />}
-        {!show && <ShowIcon className="w-6 h-6" aria-label="Mostrar libros por leer" />}
+        {show && <HiddenIcon className="w-6 h-6" aria-label="Ocultar lla lista de libros por leer" />}
+        {!show && <ShowIcon className="w-6 h-6" aria-label="Mostrar los libros por leer" />}
       </button>
     </header>
   )

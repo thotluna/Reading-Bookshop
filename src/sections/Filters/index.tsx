@@ -24,7 +24,7 @@ export function Filters({ nPage, isChecked, onChangeGender, onChangePage, search
             </li>
           ))}
         </ul>
-        <div className="flex items-center gap-1">
+        <div data-testid="filter-pages" className="flex items-center gap-1">
           <label className="inline pr-1" htmlFor="range">
             Max Paginas:
           </label>
@@ -38,6 +38,7 @@ export function Filters({ nPage, isChecked, onChangeGender, onChangePage, search
             value={nPage}
             onChange={(event) => onChangePage(Number(event.target.value))}
           />
+          <span>{nPage} paginas</span>
         </div>
       </div>
       <div className="flex items-center gap-1">

@@ -9,9 +9,9 @@ interface Props {
 
 export function BookReadingComponent({ book, onRemoveBook }: Props) {
   return (
-    <article className="relative">
+    <article data-testid="book-reading" className="relative">
       <Image className="" src={book.cover} alt={book.title} />
-      <RemoveButton clasName="absolute top-3 right-2 bg-black" onRemoveBook={onRemoveBook} />
+      <RemoveButton clasName="absolute top-3 right-2 bg-black" title={book.title} onRemoveBook={onRemoveBook} />
     </article>
   )
 }
