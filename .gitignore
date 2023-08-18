@@ -12,4 +12,6 @@ coverage
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
-
+/test-results/
+/playwright-report/
+/playwright/.cache/
