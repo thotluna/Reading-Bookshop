@@ -75,7 +75,7 @@ describe('CatalogueComponent', () => {
 
       render(<CatalogueComponent repository={repository} toToggleBook={() => {}} />)
 
-      await screen.findAllByRole('button', { name: /leer/i })
+      await screen.findAllByRole('button', { name: /agregar/i })
 
       const available = await screen.findByText(/disponibles:/i)
 

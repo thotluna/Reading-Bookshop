@@ -4,7 +4,7 @@ import { ReadingComponent } from '../../../src/sections/reading/ReadingComponent
 import { BookReading, ReadingState } from '../../../src/modules/reading/domain/models'
 import { Book } from '../../../src/modules/catalogue/domain'
 import { BookMother } from '../../modules/catalogue/domain/models'
-import React from 'react'
+
 describe('Reading Component', () => {
   it('should render hidden', () => {
     const books: Book[] = BookMother.createList(1)
@@ -24,7 +24,9 @@ describe('Reading Component', () => {
     expect(component).toHaveClass('hidden')
   })
   it('should render visible', () => {
-    const books = BookMother.createList(1)
+    const books = BookMother.createList(1).map((b) => {
+      return { ...b, position: 0 }
+    })
 
     const state: ReadingState = {
       books,
@@ -88,7 +90,7 @@ describe('Reading Component', () => {
 
       render(<ReadingComponent state={state} onRemoveBook={handler} />)
 
-      const component = await screen.findByRole('button', { name: /leer/i })
+      const component = await screen.findByRole('button', { name: /borrar/i })
       fireEvent.click(component)
 
       expect(bookFake).toEqual({ ...books[0], position: Number.MAX_SAFE_INTEGER } as BookReading)
