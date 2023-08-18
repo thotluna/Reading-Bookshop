@@ -1,9 +1,9 @@
-import { GetCatalogue } from '@/modules/catalogue/application'
-import { BookCatalogue, Catalogue, CatalogueRepository, FiltersState, Gender } from '@/modules/catalogue/domain'
+import { GetCatalogue } from '@mod-catalogue/application'
+import { BookCatalogue, Catalogue, CatalogueRepository, FiltersState, Gender } from '@mod-catalogue/domain'
 import { useEffect, useState } from 'react'
+import { Filters } from '../Filters'
 import { CatalogoBookCollection } from './CatalogoBookCollection'
 import { CatalogueEmpty } from './CatalogueEmpty'
-import { Filters } from '../Filters'
 
 interface Props {
   repository: CatalogueRepository

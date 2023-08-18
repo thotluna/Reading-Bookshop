@@ -1,6 +1,6 @@
-import { Image } from '../components/Image'
+import { BookCatalogue } from '@mod-catalogue/domain'
+import { Image } from '@sec-components'
 import ReadButton from './ReadButton'
-import { BookCatalogue } from '@/modules/catalogue/domain'
 
 interface Props {
   book: BookCatalogue

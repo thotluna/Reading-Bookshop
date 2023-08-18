@@ -1,5 +1,5 @@
-import { BookCatalogue } from '@/modules/catalogue/domain'
 import { ReactComponent as SearchDraw } from '@assets/search-draw.svg'
+import { BookCatalogue } from '@mod-catalogue/domain'
 
 interface Props {
   collection: BookCatalogue[]

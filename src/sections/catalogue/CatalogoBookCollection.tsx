@@ -1,4 +1,4 @@
-import { BookCatalogue } from '@/modules/catalogue/domain'
+import { BookCatalogue } from '@mod-catalogue/domain'
 import { BookCatalogueComponent } from '.'
 
 interface Props {
