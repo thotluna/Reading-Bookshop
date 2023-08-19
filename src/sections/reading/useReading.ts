@@ -5,7 +5,8 @@ import {
   ITEM_READING,
   ReadingState,
   RemoveBookReading,
-  SaveBookReading
+  SaveBookReading,
+  SaveStateReading
 } from '@/modules/reading'
 import { useContext, useEffect } from 'react'
 import { readingContext } from '.'
@@ -41,17 +42,26 @@ export function useReading() {
   }
 
   useEffect(() => {
-    GetReading(repository).then((state) => saveState(state))
+    GetReading(repository).then((state) => {
+      saveState(state)
+    })
 
     window.addEventListener('storage', (event) => {
       if (event.key === ITEM_READING) {
         const stateRaw = event.newValue
         if (!stateRaw) return
         const state = JSON.parse(stateRaw)
+        if (state === readingStore) return
+
         dispatch({ type: 'saveState', payload: state })
       }
     })
   }, [])
+
+  useEffect(() => {
+    if (readingStore.books.length === 0 && readingStore.show === false && readingStore.total === 0) return
+    SaveStateReading(repository, readingStore)
+  }, [readingStore])
 
   return {
     readingStore,

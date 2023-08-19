@@ -14,6 +14,7 @@ export const ITEM_READING = 'item-reading'
 
 const get = () => {
   const readingStateRaw = localStorage.getItem(ITEM_READING)
+
   if (!readingStateRaw)
     return Promise.resolve({
       books: [],
@@ -21,10 +22,13 @@ const get = () => {
       show: false
     })
 
-  return Promise.resolve(JSON.parse(readingStateRaw))
+  const res = Promise.resolve(JSON.parse(readingStateRaw))
+  return res
 }
 
-const save = (state: ReadingState) => {
+const save = async (state: ReadingState) => {
+  const stateOld = await get()
+  if (state === stateOld) return
   const stateRaw = JSON.stringify(state)
   localStorage.setItem(ITEM_READING, stateRaw)
   return Promise.resolve()

@@ -2,11 +2,6 @@ import { BookReading, ReadingState } from '@/modules/reading'
 import { ReadingRepository } from '@/modules/reading/domain/reading-repository'
 import { createContext, useReducer } from 'react'
 
-interface ReadingStore {
-  collections: BookReading[]
-  count: number
-}
-
 interface ReadingContext {
   readingStore: ReadingState
   dispatch: React.Dispatch<ReadingAction>
@@ -69,16 +64,10 @@ export function ReadingReduce(state: ReadingState, action: ReadingAction): Readi
       }
     }
     case 'saveAll': {
-      const collections = action.payload.map((book, index) => {
-        return {
-          ...book,
-          position: index
-        }
-      })
       return {
         ...state,
-        books: collections,
-        total: collections.length
+        books: action.payload,
+        total: action.payload.length
       }
     }
     case 'changeShow': {
@@ -86,6 +75,9 @@ export function ReadingReduce(state: ReadingState, action: ReadingAction): Readi
         ...state,
         show: action.payload
       }
+    }
+    case 'saveState': {
+      return action.payload
     }
 
     default:
