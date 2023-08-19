@@ -13,7 +13,7 @@ interface Props {
 
 export function Filters({ nPage, isChecked, onChangeGender, onChangePage, search, setSearch }: Props) {
   return (
-    <article className="px-8 pb-4 flex flex-col gap-1">
+    <article className=" py-8 flex flex-col gap-1">
       <div className="flex flex-wrap gap-3">
         <ul className="flex flex-wrap items-center gap-2">
           {GENDERS.map((gender) => (
