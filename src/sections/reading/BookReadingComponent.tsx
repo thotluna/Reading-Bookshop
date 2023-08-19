@@ -1,4 +1,5 @@
 import { BookReading } from '@/modules/reading/domain/models'
+import { ReactComponent as DragAndDrop } from '@assets/drag.svg'
 import { RemoveButton } from '.'
 import { Image } from '../components/Image'
 
@@ -12,6 +13,7 @@ export function BookReadingComponent({ book, onRemoveBook }: Props) {
     <article data-testid="book-reading" className="relative">
       <Image className="" src={book.cover} alt={book.title} />
       <RemoveButton clasName="absolute top-3 right-2 bg-black" title={book.title} onRemoveBook={onRemoveBook} />
+      <DragAndDrop />
     </article>
   )
 }

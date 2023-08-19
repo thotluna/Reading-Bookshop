@@ -6,9 +6,10 @@ import { ReadingEmpty } from './ReadingEmpty'
 interface Props {
   state: ReadingState
   onRemoveBook: (book: BookReading) => void
+  onSaveList: (collections: BookReading[]) => void
 }
 
-export function ReadingComponent({ state, onRemoveBook }: Props) {
+export function ReadingComponent({ state, onRemoveBook, onSaveList }: Props) {
   const hidden = useMemo(() => {
     return state.show ? 'visible' : 'hidden'
   }, [state.show])
@@ -19,7 +20,7 @@ export function ReadingComponent({ state, onRemoveBook }: Props) {
         <h2 className="text-4xl md:text-6xl ">Leer</h2>
         <h2 className="text-2xl text-slate-500">Libros por Leer: {state.total}</h2>
       </header>
-      <ReadingBookCollection collection={state.books} onRemoveBook={onRemoveBook} />
+      <ReadingBookCollection collection={state.books} onRemoveBook={onRemoveBook} onSaveList={onSaveList} />
       <ReadingEmpty collection={state.books} />
     </section>
   )

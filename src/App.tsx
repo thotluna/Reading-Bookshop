@@ -15,9 +15,16 @@ function App() {
   })
 
   const toToggleHandler = (book: BookCatalogue) => {
+    const max = readingState.books.length
     const books = readingState.books.some((b) => b.ISBN === book.ISBN)
-      ? readingState.books.filter((b) => b.ISBN !== book.ISBN)
-      : readingState.books.concat({ ...book, position: Number.MAX_SAFE_INTEGER })
+      ? readingState.books
+          .filter((b) => b.ISBN !== book.ISBN)
+          .map((b, i) => {
+            b.position = i
+            return b
+          })
+      : readingState.books.concat({ ...book, position: max })
+
     const state = {
       ...readingState,
       books,
@@ -52,7 +59,18 @@ function App() {
       <main className="container mx-auto">
         <div className="w-full flex justify-between">
           <CatalogueComponent repository={repository} toToggleBook={toToggleHandler} />
-          <ReadingComponent onRemoveBook={onRemoveBook} state={readingState} />
+          <ReadingComponent
+            onRemoveBook={onRemoveBook}
+            state={readingState}
+            onSaveList={(collections) => {
+              setReadingState((prev) => {
+                return {
+                  ...prev,
+                  books: collections
+                }
+              })
+            }}
+          />
         </div>
       </main>
     </div>
