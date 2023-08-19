@@ -15,7 +15,7 @@ export function ReadingComponent({ state, onRemoveBook, onSaveList }: Props) {
   }, [state.show])
 
   return (
-    <section data-testid="reading-component" className={`w-1/4, ${hidden}`}>
+    <section data-testid="reading-component" className={`bg-slate-600 px-8 rounded-2xl ${hidden}`}>
       <header className="px-2 md:px-8 md:py-4 flex flex-wrap gap-2 items-end justify-start">
         <h2 className="text-4xl md:text-6xl ">Leer</h2>
         <h2 className="text-2xl text-slate-500">Libros por Leer: {state.total}</h2>

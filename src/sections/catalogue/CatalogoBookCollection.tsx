@@ -9,7 +9,7 @@ interface Props {
 export function CatalogoBookCollection({ collection, onAddReading }: Props) {
   if (collection.length === 0) return
   return (
-    <section className="px-2 md:px-8 flex-1 grid grid-cols-auto gap-4 justify-items-center">
+    <section className="w-full grid grid-cols-auto gap-4 justify-items-center place-content-start ">
       {collection.map((book) => (
         <BookCatalogueComponent
           key={book.ISBN}

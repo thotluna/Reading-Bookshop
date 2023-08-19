@@ -28,6 +28,7 @@ export function Image({ src, alt, className = '' }: Props) {
       {currentState === state.LOADING && <ImageLoader />}
       {currentState === state.ERROR && <ImageBroken className="w-20" aria-label="Error al descargar la Imagen" />}
       <img
+        rel="preload"
         className={`object-scale-down ${hidden}`}
         src={src}
         alt={alt}

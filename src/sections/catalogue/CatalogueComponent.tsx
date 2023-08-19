@@ -60,8 +60,8 @@ export function CatalogueComponent({ repository, toToggleBook }: Props) {
   }, [search])
 
   return (
-    <section className="w-full h-full flex-1 flex flex-col">
-      <header className="px-2 md:px-8 md:py-4 flex flex-wrap gap-2 items-end justify-start">
+    <section className="flex flex-col">
+      <header className="flex flex-wrap gap-2 items-end justify-start">
         <h2 className="text-4xl md:text-6xl ">Catalogo</h2>
         <h2 className="text-2xl text-slate-500">
           Libros Disponibles: {state.avalaible}/{state.total}

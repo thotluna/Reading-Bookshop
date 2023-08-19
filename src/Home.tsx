@@ -27,7 +27,7 @@ export function Home() {
         }}
       />
       <main className="container mx-auto">
-        <div className="w-full flex justify-between">
+        <div className="w-full flex justify-between gap-16 p-8 ">
           <CatalogueComponent repository={repository} toToggleBook={toToggleHandler} />
           <ReadingComponent onRemoveBook={delBook} state={readingStore} onSaveList={saveAllBooks} />
         </div>

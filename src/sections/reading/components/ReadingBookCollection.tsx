@@ -14,7 +14,7 @@ export function ReadingBookCollection({ collection, onRemoveBook, onSaveList }: 
 
   if (collection.length === 0) return
   return (
-    <section className="px-2 md:px-8 grid grid-cols-auto gap-4 justify-items-center">
+    <section className="w-72  grid grid-cols-auto gap-4 justify-items-center">
       {collection.map((book) => (
         <BookDragAndDrop<BookReading>
           key={book.ISBN}
