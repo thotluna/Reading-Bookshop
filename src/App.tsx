@@ -1,76 +1,35 @@
 import { InMemoryCatalogueRepository } from '@mod-catalogue/infraestructure'
 import { CatalogueComponent } from '@sec-catalogue/CatalogueComponent'
 import { Header } from '@sections/header/Header'
-import { useState } from 'react'
 import { BookCatalogue } from './modules/catalogue/domain'
-import { BookReading, ReadingState } from './modules/reading/domain/models'
 import { ReadingComponent } from './sections/reading/ReadingComponent'
+import { useReading } from './sections/reading/useReading'
 
 function App() {
   const repository = InMemoryCatalogueRepository()
-  const [readingState, setReadingState] = useState<ReadingState>({
-    books: [],
-    total: 0,
-    show: false
-  })
+
+  const { readingStore, addBook, delBook, changePanel, excist, saveAll } = useReading()
 
   const toToggleHandler = (book: BookCatalogue) => {
-    const max = readingState.books.length
-    const books = readingState.books.some((b) => b.ISBN === book.ISBN)
-      ? readingState.books
-          .filter((b) => b.ISBN !== book.ISBN)
-          .map((b, i) => {
-            b.position = i
-            return b
-          })
-      : readingState.books.concat({ ...book, position: max })
-
-    const state = {
-      ...readingState,
-      books,
-      total: books.length
+    if (excist(book.ISBN)) {
+      delBook({ ...book, position: 0 })
+    } else {
+      addBook({ ...book, position: 0 })
     }
-    setReadingState(state)
-  }
-
-  const onRemoveBook = (book: BookReading) => {
-    setReadingState((prev) => {
-      const books = prev.books.filter((bookInMemory) => bookInMemory.ISBN !== book.ISBN)
-      return {
-        ...readingState,
-        books,
-        total: books.length
-      }
-    })
-  }
-
-  const onToggleShowHandler = () => {
-    setReadingState((prev) => {
-      return {
-        ...prev,
-        show: prev.show ? false : true
-      }
-    })
   }
 
   return (
     <div className="w-full h-full flex flex-col">
-      <Header show={readingState.show} onToggleShow={onToggleShowHandler} />
+      <Header
+        show={readingStore.show}
+        onToggleShow={() => {
+          changePanel(!readingStore.show)
+        }}
+      />
       <main className="container mx-auto">
         <div className="w-full flex justify-between">
           <CatalogueComponent repository={repository} toToggleBook={toToggleHandler} />
-          <ReadingComponent
-            onRemoveBook={onRemoveBook}
-            state={readingState}
-            onSaveList={(collections) => {
-              setReadingState((prev) => {
-                return {
-                  ...prev,
-                  books: collections
-                }
-              })
-            }}
-          />
+          <ReadingComponent onRemoveBook={delBook} state={readingStore} onSaveList={saveAll} />
         </div>
       </main>
     </div>
