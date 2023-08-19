@@ -1,5 +1,5 @@
-import { Book, BookCatalogue } from '@/modules/catalogue/domain'
-import { BookReading } from '@/modules/reading'
+import { Book, BookCatalogue } from '@mod-catalogue/domain'
+import { BookReading } from '@mod-reading/domain'
 import { useRef } from 'react'
 
 export function useDragAndDrop<T extends Pick<Book, keyof BookCatalogue>>(

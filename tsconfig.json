@@ -27,10 +27,10 @@
       "@assets/*": ["./src/assets/*"],
       "@mod-catalogue/*": ["./src/modules/catalogue/*"],
       "@mod-reading/*": ["./src/modules/reading/*"],
-      "@sections/*": ["./src/sections/*"],
-      "@sec-catalogue": ["./src/sections/catalogue/"],
+      // "@sections/*": ["./src/sections/*"],
+      // "@sec-catalogue": ["./src/sections/catalogue/"],
       "@sec-catalogue/*": ["./src/sections/catalogue/*"],
-      "@sec-reading/": ["./src/sections/reading/"],
+      // "@sec-reading/": ["./src/sections/reading/"],
       "@sec-reading/*": ["./src/sections/reading/*"],
       "@sec-components": ["./src/sections/components/"]
     }

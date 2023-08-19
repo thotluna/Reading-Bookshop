@@ -1,5 +1,4 @@
-import { BookReading, ReadingState } from '@/modules/reading'
-import { ReadingRepository } from '@/modules/reading/domain/reading-repository'
+import { BookReading, ReadingRepository, ReadingState } from '@mod-reading/domain'
 import { createContext, useReducer } from 'react'
 
 interface ReadingContext {
@@ -10,6 +9,7 @@ interface ReadingContext {
 
 const INITIAL_READING_CONTEXT: ReadingState = { books: [], total: 0, show: false }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const readingContext = createContext<ReadingContext>({} as ReadingContext)
 
 interface Props {
