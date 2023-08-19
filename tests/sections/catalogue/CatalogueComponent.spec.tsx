@@ -238,11 +238,10 @@ describe('CatalogueComponent', () => {
         const books = BookMother.createList(10)
         const gender = 'Fantasía'
         const bookGenderFiltered = books.filter((book) => book.gender === gender)
-        const pages = 100 //bookGenderFiltered[0].pages
-        console.log({ pages })
+        const pages = 100
 
         const bookPageFiltered = bookGenderFiltered.filter((book) => book.pages === pages)
-        const search = 'a' //bookPageFiltered[0].title.split(' ')[0]
+        const search = 'a'
 
         const bookSearchfiltered = bookPageFiltered.filter((book) => {
           const author = book.author.name.toLowerCase()
