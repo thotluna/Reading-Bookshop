@@ -1,6 +1,6 @@
 import { ReadingRepository } from '@mod-reading/domain'
 import { LocalStorageReadingRepository } from '@mod-reading/infraestructure'
-import { ReadingProvider } from '@sec-reading/ReadingContext'
+import { ReadingProvider } from '@sec-reading/context'
 import { Home } from './Home'
 
 function App() {

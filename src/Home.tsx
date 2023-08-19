@@ -1,9 +1,9 @@
+import { BookCatalogue } from '@mod-catalogue/domain'
 import { InMemoryCatalogueRepository } from '@mod-catalogue/infraestructure'
 import { CatalogueComponent } from '@sec-catalogue/CatalogueComponent'
-import { Header } from '@sections/header/Header'
-import { BookCatalogue } from './modules/catalogue/domain'
-import { ReadingComponent } from './sections/reading/ReadingComponent'
-import { useReading } from './sections/reading/useReading'
+import { ReadingComponent } from '@sec-reading/ReadingComponent'
+import { useReading } from '@sec-reading/hooks'
+import { Header } from '../src/sections/header/Header'
 
 export function Home() {
   const repository = InMemoryCatalogueRepository()

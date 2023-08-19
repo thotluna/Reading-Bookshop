@@ -1,7 +1,7 @@
 import { BookReading } from '@mod-reading/domain'
-import { BookReadingComponent } from '.'
+import { useDragAndDrop } from '../hooks/useDragAndDrop'
 import BookDragAndDrop from './BookDragAndDrop'
-import { useDragAndDrop } from './useDragAndDrop'
+import { BookReadingComponent } from './BookReadingComponent'
 
 interface Props {
   collection: BookReading[]

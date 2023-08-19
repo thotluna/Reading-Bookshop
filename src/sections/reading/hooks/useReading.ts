@@ -1,8 +1,8 @@
 import { GetReading, SaveStateReading } from '@mod-reading/application'
 import { BookReading, ReadingState } from '@mod-reading/domain'
 import { ITEM_READING } from '@mod-reading/infraestructure'
+import { readingContext } from '@sec-reading/context'
 import { useContext, useEffect } from 'react'
-import { readingContext } from '.'
 
 export function useReading() {
   const { readingStore, dispatch, repository } = useContext(readingContext)

@@ -1,7 +1,7 @@
 import { BookReading, ReadingState } from '@mod-reading/domain'
 import { useMemo } from 'react'
-import { ReadingBookCollection } from './ReadingBookCollection'
-import { ReadingEmpty } from './ReadingEmpty'
+import { ReadingBookCollection } from './components/ReadingBookCollection'
+import { ReadingEmpty } from './components/ReadingEmpty'
 
 interface Props {
   state: ReadingState
