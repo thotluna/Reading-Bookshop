@@ -9,7 +9,7 @@ interface Props<T> {
 function BookDragAndDrop<T>({ book, onDragEnd, onDragEnter, onDragStart, children }: Props<T>) {
   return (
     <div
-      className={`cursor-move transition-transform duration-1000`}
+      className={`drag-and-drop cursor-move transition-transform duration-1000`}
       draggable
       onDragStart={() => {
         onDragStart(book)

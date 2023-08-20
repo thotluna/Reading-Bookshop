@@ -1,4 +1,4 @@
-import { ReadingState } from '..'
+import { ReadingState } from '../domain'
 import { ReadingRepository } from '../domain/reading-repository'
 
 export function LocalStorageReadingRepository(): ReadingRepository {
@@ -6,7 +6,8 @@ export function LocalStorageReadingRepository(): ReadingRepository {
     get: () => get(),
     save: (state: ReadingState) => {
       return save(state)
-    }
+    },
+    delAll: () => delAll()
   }
 }
 
@@ -31,5 +32,10 @@ const save = async (state: ReadingState) => {
   if (state === stateOld) return
   const stateRaw = JSON.stringify(state)
   localStorage.setItem(ITEM_READING, stateRaw)
+  return Promise.resolve()
+}
+
+const delAll = () => {
+  window.localStorage.removeItem(ITEM_READING)
   return Promise.resolve()
 }
