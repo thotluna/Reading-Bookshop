@@ -1,7 +1,8 @@
 import { GetCatalogue } from '@mod-catalogue/application'
-import { BookCatalogue, Catalogue, CatalogueRepository, FiltersState, Gender } from '@mod-catalogue/domain'
+import { BookCatalogue, Catalogue, CatalogueRepository } from '@mod-catalogue/domain'
 import { useEffect, useState } from 'react'
 import { Filters } from '../Filters'
+import { useFilters } from '../Filters/use-filters'
 import { CatalogoBookCollection } from './CatalogoBookCollection'
 import { CatalogueEmpty } from './CatalogueEmpty'
 
@@ -12,52 +13,11 @@ interface Props {
 
 export function CatalogueComponent({ repository, toToggleBook }: Props) {
   const [state, setState] = useState<Catalogue>({ books: [], total: 0, avalaible: 0 })
-  const [stateFilters, setStateFilters] = useState<FiltersState>({
-    genders: [],
-    nPages: 0,
-    search: undefined
-  })
-
-  const [search, setSearch] = useState('')
+  const { filtersState } = useFilters()
 
   useEffect(() => {
-    GetCatalogue(repository, stateFilters).then(setState)
-  }, [repository, stateFilters])
-
-  const isGenderHandler = (gender: Gender) => {
-    return stateFilters.genders.includes(gender)
-  }
-
-  const onChangeGenderHandler = (gender: Gender) => {
-    setStateFilters((prev) => {
-      return {
-        ...prev,
-        genders: stateFilters.genders.includes(gender)
-          ? stateFilters.genders.filter((g) => g !== gender)
-          : stateFilters.genders.concat(gender)
-      }
-    })
-  }
-
-  const onChangePage = (nPages: number) => {
-    setStateFilters((prev) => {
-      return { ...prev, nPages }
-    })
-  }
-
-  const onSearch = (search: string) => {
-    setStateFilters((prev) => {
-      return { ...prev, search }
-    })
-  }
-
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      onSearch(search)
-    }, 500)
-
-    return () => clearTimeout(timeout)
-  }, [search])
+    GetCatalogue(repository, filtersState).then(setState)
+  }, [repository, filtersState])
 
   return (
     <section className="flex flex-col">
@@ -67,14 +27,7 @@ export function CatalogueComponent({ repository, toToggleBook }: Props) {
           Libros Disponibles: {state.avalaible}/{state.total}
         </h2>
       </header>
-      <Filters
-        nPage={stateFilters.nPages}
-        isChecked={isGenderHandler}
-        onChangeGender={onChangeGenderHandler}
-        onChangePage={onChangePage}
-        search={search}
-        setSearch={setSearch}
-      />
+      <Filters />
       <CatalogueEmpty collection={state.books} />
       <CatalogoBookCollection collection={state.books} onAddReading={toToggleBook} />
     </section>

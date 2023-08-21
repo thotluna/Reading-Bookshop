@@ -23,9 +23,10 @@
 
     /* alias */
     "paths": {
-      "@/*": ["./src/*"],
+      "@/": ["./src/"],
       "@assets/*": ["./src/assets/*"],
       "@mod-catalogue/*": ["./src/modules/catalogue/*"],
+      "@mod-filters/*": ["./src/modules/filters/*"],
       "@mod-reading/*": ["./src/modules/reading/*"],
       // "@sections/*": ["./src/sections/*"],
       // "@sec-catalogue": ["./src/sections/catalogue/"],
