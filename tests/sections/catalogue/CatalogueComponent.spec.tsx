@@ -1,8 +1,10 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { describe, expect, vi } from 'vitest'
 import { Book, Catalogue, CatalogueRepository } from '../../../src/modules/catalogue/domain'
+import { FiltersProvider } from '../../../src/sections/Filters/filters-provider'
 import { CatalogueComponent } from '../../../src/sections/catalogue'
 import { BookMother } from '../../modules/catalogue/domain/models'
+import { FiltersRepositoryObjectMother, FiltersStateObjectMother } from '../../modules/filters/domain/objects-mothers'
 
 describe('CatalogueComponent', () => {
   it('should render title', async () => {
@@ -15,7 +17,12 @@ describe('CatalogueComponent', () => {
       getCatalogue: vi.fn().mockResolvedValue(Promise.resolve(state))
     }
 
-    render(<CatalogueComponent repository={repository} toToggleBook={() => {}} />)
+    const filtersRepository = FiltersRepositoryObjectMother.create({})
+    render(
+      <FiltersProvider repository={filtersRepository}>
+        <CatalogueComponent repository={repository} toToggleBook={() => {}} />
+      </FiltersProvider>
+    )
 
     await waitFor(async () => {
       const title = screen.queryByText(/catalogo/i)
@@ -36,7 +43,12 @@ describe('CatalogueComponent', () => {
         getCatalogue: vi.fn().mockResolvedValue(Promise.resolve(state))
       }
 
-      render(<CatalogueComponent repository={repository} toToggleBook={() => {}} />)
+      const filtersRepository = FiltersRepositoryObjectMother.create({})
+      render(
+        <FiltersProvider repository={filtersRepository}>
+          <CatalogueComponent repository={repository} toToggleBook={() => {}} />
+        </FiltersProvider>
+      )
 
       const available = await screen.findByText(/disponibles:/i)
       expect(available).toHaveTextContent(' 0/0')
@@ -52,7 +64,12 @@ describe('CatalogueComponent', () => {
         getCatalogue: vi.fn().mockResolvedValue(Promise.resolve(state))
       }
 
-      render(<CatalogueComponent repository={repository} toToggleBook={() => {}} />)
+      const filtersRepository = FiltersRepositoryObjectMother.create({})
+      render(
+        <FiltersProvider repository={filtersRepository}>
+          <CatalogueComponent repository={repository} toToggleBook={() => {}} />
+        </FiltersProvider>
+      )
 
       const title = await screen.findByText('Uff! Actualmente no contamos con libros disponibles.')
       expect(title).toBeInTheDocument()
@@ -72,7 +89,12 @@ describe('CatalogueComponent', () => {
         getCatalogue: vi.fn().mockResolvedValue(Promise.resolve(state))
       }
 
-      render(<CatalogueComponent repository={repository} toToggleBook={() => {}} />)
+      const filtersRepository = FiltersRepositoryObjectMother.create({})
+      render(
+        <FiltersProvider repository={filtersRepository}>
+          <CatalogueComponent repository={repository} toToggleBook={() => {}} />
+        </FiltersProvider>
+      )
 
       await screen.findAllByRole('button', { name: /agregar/i })
 
@@ -105,7 +127,20 @@ describe('CatalogueComponent', () => {
 
         const spy = vi.spyOn(repository, 'getCatalogue')
 
-        render(<CatalogueComponent repository={repository} toToggleBook={() => {}} />)
+        const filtersRepository = FiltersRepositoryObjectMother.create({
+          partial: {
+            get: vi
+              .fn()
+              .mockReturnValueOnce(FiltersStateObjectMother.create({}))
+              .mockReturnValue(FiltersStateObjectMother.create({ genders: ['Fantasía'] }))
+              .mockReturnValueOnce(FiltersStateObjectMother.create({}))
+          }
+        })
+        render(
+          <FiltersProvider repository={filtersRepository}>
+            <CatalogueComponent repository={repository} toToggleBook={() => {}} />
+          </FiltersProvider>
+        )
 
         const genderFantasy = screen.queryByLabelText('Fantasía')
         expect(genderFantasy).toBeInTheDocument()
@@ -117,21 +152,9 @@ describe('CatalogueComponent', () => {
           expect(available).toHaveTextContent(` ${bookFiltered.length}/${books.length}`)
 
           expect(spy).toHaveBeenCalledTimes(4)
-          expect(spy).toHaveBeenCalledWith({
-            genders: [],
-            nPages: 0,
-            search: undefined
-          })
-          expect(spy).toHaveBeenNthCalledWith(2, {
-            genders: ['Fantasía'],
-            nPages: 0,
-            search: undefined
-          })
-          expect(spy).toHaveBeenLastCalledWith({
-            genders: [],
-            nPages: 0,
-            search: ''
-          })
+          expect(spy).toHaveBeenCalledWith(FiltersStateObjectMother.create({}))
+          expect(spy).toHaveBeenNthCalledWith(2, FiltersStateObjectMother.create({ genders: ['Fantasía'] }))
+          expect(spy).toHaveBeenLastCalledWith(FiltersStateObjectMother.create({}))
         })
       })
 
@@ -158,7 +181,12 @@ describe('CatalogueComponent', () => {
 
         const spy = vi.spyOn(repository, 'getCatalogue')
 
-        render(<CatalogueComponent repository={repository} toToggleBook={() => {}} />)
+        const filtersRepository = FiltersRepositoryObjectMother.create({})
+        render(
+          <FiltersProvider repository={filtersRepository}>
+            <CatalogueComponent repository={repository} toToggleBook={() => {}} />
+          </FiltersProvider>
+        )
 
         const slider: HTMLInputElement = screen.getByRole('slider', { name: /Max Paginas:/ })
         fireEvent.change(slider, { target: { value: 170 } })
@@ -167,16 +195,8 @@ describe('CatalogueComponent', () => {
           expect(available).toHaveTextContent(` ${bookFiltered.length}/${books.length}`)
 
           expect(spy).toHaveBeenCalledTimes(2)
-          expect(spy).toHaveBeenCalledWith({
-            genders: [],
-            nPages: 0,
-            search: undefined
-          })
-          expect(spy).toHaveBeenLastCalledWith({
-            genders: [],
-            nPages: 170,
-            search: undefined
-          })
+          expect(spy).toHaveBeenCalledWith(FiltersStateObjectMother.create({}))
+          expect(spy).toHaveBeenLastCalledWith(FiltersStateObjectMother.create({ nPages: 170 }))
         })
       })
 
@@ -211,7 +231,12 @@ describe('CatalogueComponent', () => {
         }
         const spy = vi.spyOn(repository, 'getCatalogue')
 
-        render(<CatalogueComponent repository={repository} toToggleBook={() => {}} />)
+        const filtersRepository = FiltersRepositoryObjectMother.create({})
+        render(
+          <FiltersProvider repository={filtersRepository}>
+            <CatalogueComponent repository={repository} toToggleBook={() => {}} />
+          </FiltersProvider>
+        )
 
         const searchElement: HTMLInputElement = screen.getByRole('textbox', { name: /Busqueda/i })
         expect(searchElement).toBeInTheDocument()
@@ -221,16 +246,8 @@ describe('CatalogueComponent', () => {
           expect(available).toHaveTextContent(` ${bookFiltered.length}/${books.length}`)
 
           expect(spy).toHaveBeenCalledTimes(2)
-          expect(spy).toHaveBeenCalledWith({
-            genders: [],
-            nPages: 0,
-            search: undefined
-          })
-          expect(spy).toHaveBeenLastCalledWith({
-            genders: [],
-            nPages: 0,
-            search: search
-          })
+          expect(spy).toHaveBeenCalledWith(FiltersStateObjectMother.create({}))
+          expect(spy).toHaveBeenLastCalledWith(FiltersStateObjectMother.create({ search }))
         })
       })
 
@@ -287,7 +304,12 @@ describe('CatalogueComponent', () => {
 
         const spy = vi.spyOn(repository, 'getCatalogue')
 
-        render(<CatalogueComponent repository={repository} toToggleBook={() => {}} />)
+        const filtersRepository = FiltersRepositoryObjectMother.create({})
+        render(
+          <FiltersProvider repository={filtersRepository}>
+            <CatalogueComponent repository={repository} toToggleBook={() => {}} />
+          </FiltersProvider>
+        )
 
         const genderFantasy = screen.queryByLabelText(gender)
         expect(genderFantasy).toBeInTheDocument()
@@ -305,28 +327,13 @@ describe('CatalogueComponent', () => {
           expect(available).toHaveTextContent(` ${bookSearchfiltered.length}/${books.length}`)
 
           expect(spy).toHaveBeenCalledTimes(4)
-          expect(spy).toHaveBeenCalledWith({
-            genders: [],
-            nPages: 0,
-            search: undefined
-          })
-          expect(spy).toHaveBeenNthCalledWith(2, {
-            genders: [gender],
-            nPages: 0,
-            search: undefined
-          })
-
-          expect(spy).toHaveBeenNthCalledWith(3, {
-            genders: [gender],
-            nPages: pages,
-            search: undefined
-          })
-
-          expect(spy).toHaveBeenLastCalledWith({
-            genders: [gender],
-            nPages: pages,
-            search: search
-          })
+          expect(spy).toHaveBeenCalledWith(FiltersStateObjectMother.create({}))
+          expect(spy).toHaveBeenNthCalledWith(2, FiltersStateObjectMother.create({ genders: [gender] }))
+          expect(spy).toHaveBeenNthCalledWith(3, FiltersStateObjectMother.create({ genders: [gender], nPages: pages }))
+          expect(spy).toHaveBeenNthCalledWith(
+            4,
+            FiltersStateObjectMother.create({ genders: [gender], nPages: pages, search })
+          )
         })
       })
     })
