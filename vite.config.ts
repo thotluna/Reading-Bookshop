@@ -23,7 +23,12 @@ export default defineConfig({
       '@sections': path.resolve(__dirname, './src/sections'),
       '@sec-catalogue': path.resolve(__dirname, './src/sections/catalogue'),
       '@sec-reading': path.resolve(__dirname, './src/sections/reading'),
-      '@sec-components': path.resolve(__dirname, './src/sections/components')
+      '@sec-components': path.resolve(__dirname, './src/sections/components'),
+      '@test-mod-catalogue': path.resolve(__dirname, './tests/modules/catalogue'),
+      '@test-mod-filters': path.resolve(__dirname, './tests/modules/filters'),
+      '@test-sec-catalogue': path.resolve(__dirname, './tests/sections/catalogue'),
+      '@test-sec-components': path.resolve(__dirname, './tests/sections/components'),
+      '@test-sec-filters': path.resolve(__dirname, './tests/sections/filters')
     }
   }
 })

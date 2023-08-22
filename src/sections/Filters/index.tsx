@@ -3,7 +3,7 @@ import { Gender } from '@mod-catalogue/domain'
 import { useEffect, useState } from 'react'
 import { useFilters } from './use-filters'
 
-const GENDERS: Gender[] = ['Fantasía', 'Ciencia ficción', 'Zombies', 'Terror']
+export const GENDERS: Gender[] = ['Fantasía', 'Ciencia ficción', 'Zombies', 'Terror']
 
 export function Filters() {
   const { filtersState, addSearch, addNPages, toggleGender, exists } = useFilters()
@@ -12,7 +12,7 @@ export function Filters() {
   useEffect(() => {
     const timeout = setTimeout(() => {
       addSearch(search)
-    }, 500)
+    }, 200)
 
     return () => clearTimeout(timeout)
   }, [search, addSearch])

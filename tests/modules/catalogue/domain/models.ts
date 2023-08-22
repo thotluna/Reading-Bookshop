@@ -1,5 +1,5 @@
-import { Author, Book } from '@/modules/catalogue/domain'
 import { faker } from '@faker-js/faker'
+import { Author, Book } from '@mod-catalogue/domain'
 import { Factory } from 'fishery'
 
 const AuthorFactory = Factory.define<Author>(() => ({

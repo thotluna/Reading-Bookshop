@@ -33,7 +33,9 @@
       "@sec-catalogue/*": ["./src/sections/catalogue/*"],
       // "@sec-reading/": ["./src/sections/reading/"],
       "@sec-reading/*": ["./src/sections/reading/*"],
-      "@sec-components": ["./src/sections/components/"]
+      "@sec-components": ["./src/sections/components/"],
+      "@test-mod-catalogue": ["./tests/modules/catalogue"],
+      "@test-mod-filters": ["./tests/modules/filters"]
     }
   },
   "include": ["src", "src/setupTest", "tests"],
