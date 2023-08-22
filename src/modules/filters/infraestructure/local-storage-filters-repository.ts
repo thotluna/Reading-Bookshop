@@ -8,7 +8,7 @@ export function LocalStorageFiltersRepository(): FiltersRepository {
   }
 }
 
-const ITEM_FILTERS = 'item-filters'
+export const ITEM_FILTERS = 'item-filters'
 
 const get = () => {
   const stateRaw = localStorage.getItem(ITEM_FILTERS)
