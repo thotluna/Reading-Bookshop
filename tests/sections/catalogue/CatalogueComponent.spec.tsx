@@ -1,3 +1,4 @@
+import { ReadingProvider } from '@sec-reading/context'
 import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { describe, expect, vi } from 'vitest'
 import { Book, Catalogue, CatalogueRepository } from '../../../src/modules/catalogue/domain'
@@ -5,6 +6,7 @@ import { FiltersProvider } from '../../../src/sections/Filters/filters-provider'
 import { CatalogueComponent } from '../../../src/sections/catalogue'
 import { BookMother } from '../../modules/catalogue/domain/models'
 import { FiltersRepositoryObjectMother, FiltersStateObjectMother } from '../../modules/filters/domain/objects-mothers'
+import { ReadingRepositoryObjectMother } from '../../modules/reading/domain/models'
 
 describe('CatalogueComponent', () => {
   it('should render title', async () => {
@@ -18,9 +20,12 @@ describe('CatalogueComponent', () => {
     }
 
     const filtersRepository = FiltersRepositoryObjectMother.create({})
+    const readingRepository = ReadingRepositoryObjectMother.create({})
     render(
       <FiltersProvider repository={filtersRepository}>
-        <CatalogueComponent repository={repository} toToggleBook={() => {}} />
+        <ReadingProvider repository={readingRepository}>
+          <CatalogueComponent repository={repository} toToggleBook={() => {}} />
+        </ReadingProvider>
       </FiltersProvider>
     )
 
@@ -44,9 +49,12 @@ describe('CatalogueComponent', () => {
       }
 
       const filtersRepository = FiltersRepositoryObjectMother.create({})
+      const readingRepository = ReadingRepositoryObjectMother.create({})
       render(
         <FiltersProvider repository={filtersRepository}>
-          <CatalogueComponent repository={repository} toToggleBook={() => {}} />
+          <ReadingProvider repository={readingRepository}>
+            <CatalogueComponent repository={repository} toToggleBook={() => {}} />
+          </ReadingProvider>
         </FiltersProvider>
       )
 
@@ -65,9 +73,12 @@ describe('CatalogueComponent', () => {
       }
 
       const filtersRepository = FiltersRepositoryObjectMother.create({})
+      const readingRepository = ReadingRepositoryObjectMother.create({})
       render(
         <FiltersProvider repository={filtersRepository}>
-          <CatalogueComponent repository={repository} toToggleBook={() => {}} />
+          <ReadingProvider repository={readingRepository}>
+            <CatalogueComponent repository={repository} toToggleBook={() => {}} />
+          </ReadingProvider>
         </FiltersProvider>
       )
 
@@ -90,9 +101,12 @@ describe('CatalogueComponent', () => {
       }
 
       const filtersRepository = FiltersRepositoryObjectMother.create({})
+      const readingRepository = ReadingRepositoryObjectMother.create({})
       render(
         <FiltersProvider repository={filtersRepository}>
-          <CatalogueComponent repository={repository} toToggleBook={() => {}} />
+          <ReadingProvider repository={readingRepository}>
+            <CatalogueComponent repository={repository} toToggleBook={() => {}} />
+          </ReadingProvider>
         </FiltersProvider>
       )
 
@@ -136,9 +150,12 @@ describe('CatalogueComponent', () => {
               .mockReturnValueOnce(FiltersStateObjectMother.create({}))
           }
         })
+        const readingRepository = ReadingRepositoryObjectMother.create({})
         render(
           <FiltersProvider repository={filtersRepository}>
-            <CatalogueComponent repository={repository} toToggleBook={() => {}} />
+            <ReadingProvider repository={readingRepository}>
+              <CatalogueComponent repository={repository} toToggleBook={() => {}} />
+            </ReadingProvider>
           </FiltersProvider>
         )
 
@@ -182,9 +199,12 @@ describe('CatalogueComponent', () => {
         const spy = vi.spyOn(repository, 'getCatalogue')
 
         const filtersRepository = FiltersRepositoryObjectMother.create({})
+        const readingRepository = ReadingRepositoryObjectMother.create({})
         render(
           <FiltersProvider repository={filtersRepository}>
-            <CatalogueComponent repository={repository} toToggleBook={() => {}} />
+            <ReadingProvider repository={readingRepository}>
+              <CatalogueComponent repository={repository} toToggleBook={() => {}} />
+            </ReadingProvider>
           </FiltersProvider>
         )
 
@@ -232,9 +252,12 @@ describe('CatalogueComponent', () => {
         const spy = vi.spyOn(repository, 'getCatalogue')
 
         const filtersRepository = FiltersRepositoryObjectMother.create({})
+        const readingRepository = ReadingRepositoryObjectMother.create({})
         render(
           <FiltersProvider repository={filtersRepository}>
-            <CatalogueComponent repository={repository} toToggleBook={() => {}} />
+            <ReadingProvider repository={readingRepository}>
+              <CatalogueComponent repository={repository} toToggleBook={() => {}} />
+            </ReadingProvider>
           </FiltersProvider>
         )
 
@@ -305,9 +328,12 @@ describe('CatalogueComponent', () => {
         const spy = vi.spyOn(repository, 'getCatalogue')
 
         const filtersRepository = FiltersRepositoryObjectMother.create({})
+        const readingRepository = ReadingRepositoryObjectMother.create({})
         render(
           <FiltersProvider repository={filtersRepository}>
-            <CatalogueComponent repository={repository} toToggleBook={() => {}} />
+            <ReadingProvider repository={readingRepository}>
+              <CatalogueComponent repository={repository} toToggleBook={() => {}} />
+            </ReadingProvider>
           </FiltersProvider>
         )
 
