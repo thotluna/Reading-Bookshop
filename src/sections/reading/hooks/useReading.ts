@@ -1,7 +1,9 @@
+import { BookCatalogue } from '@mod-catalogue/domain'
 import { GetReading, SaveStateReading } from '@mod-reading/application'
 import { BookReading, ReadingState } from '@mod-reading/domain'
 import { ITEM_READING } from '@mod-reading/infraestructure'
 import { readingContext } from '@sec-reading/context'
+import { place } from '@sec-reading/context/DragAndDropContext'
 import { useContext, useEffect } from 'react'
 
 export function useReading() {
@@ -9,12 +11,10 @@ export function useReading() {
 
   const addBook = (book: BookReading) => {
     dispatch({ type: 'save', payload: book })
-    // SaveBookReading(repository, book)
   }
 
   const delBook = (book: BookReading) => {
     dispatch({ type: 'remove', payload: book })
-    // RemoveBookReading(repository, book.ISBN)
   }
 
   const excist = (ISBN: string) => {
@@ -23,7 +23,6 @@ export function useReading() {
 
   const changePanel = (show: boolean) => {
     dispatch({ type: 'changeShow', payload: show })
-    // ChangePanelReading(repository, show)
   }
 
   const saveAllBooks = (books: BookReading[]) => {
@@ -32,6 +31,37 @@ export function useReading() {
 
   const saveState = (state: ReadingState) => {
     dispatch({ type: 'saveState', payload: state })
+  }
+
+  const onSortAndSave = (
+    bookDrag: BookCatalogue,
+    reciveBook: BookCatalogue | undefined,
+    placeBook: place | undefined
+  ) => {
+    let books: BookReading[] = []
+    if (reciveBook) {
+      books = readingStore.books
+
+      const indexBookDrag = books.findIndex((b) => b.ISBN === bookDrag.ISBN)
+      const indexReciveBook = books.findIndex((b) => b.ISBN === reciveBook?.ISBN)
+
+      const draggedItemContext = books.splice(indexBookDrag, 1)[0]
+
+      books.splice(indexReciveBook, 0, draggedItemContext)
+    } else {
+      books =
+        placeBook === place.READING
+          ? readingStore.books.concat({ ...bookDrag, position: 0 })
+          : readingStore.books.filter((book) => book.ISBN !== bookDrag.ISBN)
+    }
+    saveAllBooks(
+      books.map((book, i) => {
+        return {
+          ...book,
+          position: i
+        }
+      })
+    )
   }
 
   useEffect(() => {
@@ -63,6 +93,7 @@ export function useReading() {
     delBook,
     saveAllBooks,
     excist,
-    changePanel
+    changePanel,
+    onSortAndSave
   }
 }
