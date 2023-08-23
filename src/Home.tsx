@@ -1,16 +1,16 @@
 import { BookCatalogue } from '@mod-catalogue/domain'
 import { InMemoryCatalogueRepository } from '@mod-catalogue/infraestructure'
-import { FiltersRepository } from '@mod-filters/domain'
 import { LocalStorageFiltersRepository } from '@mod-filters/infraestructure'
 import { CatalogueComponent } from '@sec-catalogue/CatalogueComponent'
 import { ReadingComponent } from '@sec-reading/ReadingComponent'
 import { useReading } from '@sec-reading/hooks'
+import { useMemo } from 'react'
 import { Header } from '../src/sections/header/Header'
 import { FiltersProvider } from './sections/Filters/filters-provider'
 
 export function Home() {
-  const repository = InMemoryCatalogueRepository()
-  const filtersRepository = LocalStorageFiltersRepository() satisfies FiltersRepository
+  const repository = useMemo(() => InMemoryCatalogueRepository(), [])
+  const filtersRepository = useMemo(() => LocalStorageFiltersRepository(), [])
 
   const { readingStore, addBook, delBook, changePanel, excist, saveAllBooks } = useReading()
 
