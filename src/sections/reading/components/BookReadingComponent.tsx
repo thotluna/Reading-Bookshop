@@ -1,5 +1,5 @@
-import { BookReading } from '@/modules/reading/domain/models'
 import { ReactComponent as DragAndDrop } from '@assets/drag.svg'
+import { BookReading } from '@mod-reading/domain'
 import { Image } from '../../components/Image'
 import { RemoveButton } from './RemoveButton'
 
