@@ -17,6 +17,14 @@ export function useReading() {
     dispatch({ type: 'remove', payload: book })
   }
 
+  const toggleReading = (book: BookCatalogue) => {
+    if (excist(book.ISBN)) {
+      delBook({ ...book, position: 0 })
+    } else {
+      addBook({ ...book, position: 0 })
+    }
+  }
+
   const excist = (ISBN: string) => {
     return readingStore.books.some((b: BookReading) => b.ISBN === ISBN)
   }
@@ -89,6 +97,7 @@ export function useReading() {
     delBook,
     saveAllBooks,
     excist,
-    onSortAndSave
+    onSortAndSave,
+    toggleReading
   }
 }
