@@ -28,6 +28,7 @@
       "@mod-catalogue/*": ["./src/modules/catalogue/*"],
       "@mod-filters/*": ["./src/modules/filters/*"],
       "@mod-reading/*": ["./src/modules/reading/*"],
+      "@mod-panel/*": ["./src/modules/panel/*"],
       // "@sections/*": ["./src/sections/*"],
       // "@sec-catalogue": ["./src/sections/catalogue/"],
       "@sec-catalogue/*": ["./src/sections/catalogue/*"],

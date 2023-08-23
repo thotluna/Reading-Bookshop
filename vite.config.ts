@@ -20,6 +20,7 @@ export default defineConfig({
       '@mod-catalogue': path.resolve(__dirname, './src/modules/catalogue'),
       '@mod-filters': path.resolve(__dirname, './src/modules/filters'),
       '@mod-reading': path.resolve(__dirname, './src/modules/reading'),
+      '@mod-panel': path.resolve(__dirname, './src/modules/panel'),
       '@sections': path.resolve(__dirname, './src/sections'),
       '@sec-catalogue': path.resolve(__dirname, './src/sections/catalogue'),
       '@sec-reading': path.resolve(__dirname, './src/sections/reading'),
