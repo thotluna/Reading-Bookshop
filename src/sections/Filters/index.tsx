@@ -1,6 +1,6 @@
 import { ReactComponent as SearchIcon } from '@assets/search.svg'
 import { Gender } from '@mod-catalogue/domain'
-import { useEffect, useState } from 'react'
+import { memo, useEffect, useState } from 'react'
 import { useFilters } from './use-filters'
 
 export const GENDERS: Gender[] = ['Fantasía', 'Ciencia ficción', 'Zombies', 'Terror']
@@ -55,3 +55,5 @@ export function Filters() {
     </article>
   )
 }
+
+export default memo(Filters)
