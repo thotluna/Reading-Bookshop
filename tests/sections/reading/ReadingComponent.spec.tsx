@@ -2,8 +2,10 @@ import { fireEvent, render, screen } from '@testing-library/react'
 import { describe, it } from 'vitest'
 import { Book } from '../../../src/modules/catalogue/domain'
 import { BookReading, ReadingState } from '../../../src/modules/reading/domain/models'
+import { PanelProvider } from '../../../src/sections/panel/panel-provider'
 import { ReadingComponent } from '../../../src/sections/reading/ReadingComponent'
 import { BookMother } from '../../modules/catalogue/domain/models'
+import { PanelRepositoryObjectMother, PanelStateObjectMother } from '../../modules/panel/domain/models'
 
 describe('Reading Component', () => {
   it('should render hidden', () => {
@@ -13,11 +15,16 @@ describe('Reading Component', () => {
       books: books.map((b) => {
         return { ...b, position: Number.MAX_SAFE_INTEGER } as BookReading
       }),
-      total: books.length,
-      show: false
+      total: books.length
     }
 
-    render(<ReadingComponent state={state} onRemoveBook={() => {}} />)
+    const panelRepository = PanelRepositoryObjectMother.create({})
+
+    render(
+      <PanelProvider repository={panelRepository}>
+        <ReadingComponent state={state} onRemoveBook={() => {}} onSaveList={() => {}} />
+      </PanelProvider>
+    )
 
     const component = screen.queryByTestId('reading-component')
     expect(component).toBeInTheDocument()
@@ -30,11 +37,18 @@ describe('Reading Component', () => {
 
     const state: ReadingState = {
       books,
-      total: books.length,
-      show: true
+      total: books.length
     }
 
-    render(<ReadingComponent state={state} onRemoveBook={() => {}} />)
+    const panelRepository = PanelRepositoryObjectMother.create({
+      panelState: PanelStateObjectMother.create({ panel: 'show' })
+    })
+
+    render(
+      <PanelProvider repository={panelRepository}>
+        <ReadingComponent state={state} onRemoveBook={() => {}} onSaveList={() => {}} />
+      </PanelProvider>
+    )
 
     const component = screen.queryByTestId('reading-component')
     expect(component).toBeInTheDocument()
@@ -44,11 +58,18 @@ describe('Reading Component', () => {
     it('should render message without book', async () => {
       const state: ReadingState = {
         books: [],
-        total: 0,
-        show: true
+        total: 0
       }
 
-      render(<ReadingComponent state={state} onRemoveBook={() => {}} />)
+      const panelRepository = PanelRepositoryObjectMother.create({
+        panelState: PanelStateObjectMother.create({ panel: 'show' })
+      })
+
+      render(
+        <PanelProvider repository={panelRepository}>
+          <ReadingComponent state={state} onRemoveBook={() => {}} onSaveList={() => {}} />
+        </PanelProvider>
+      )
 
       const component = await screen.findByText(/Todavia no has seleccionado ningun libro para leer./i)
       expect(component).toBeInTheDocument()
@@ -62,15 +83,23 @@ describe('Reading Component', () => {
         books: books.map((b) => {
           return { ...b, position: Number.MAX_SAFE_INTEGER } as BookReading
         }),
-        total: books.length,
-        show: false
+        total: books.length
       }
 
-      render(<ReadingComponent state={state} onRemoveBook={() => {}} />)
+      const panelRepository = PanelRepositoryObjectMother.create({
+        panelState: PanelStateObjectMother.create({ panel: 'show' })
+      })
+
+      render(
+        <PanelProvider repository={panelRepository}>
+          <ReadingComponent state={state} onRemoveBook={() => {}} onSaveList={() => {}} />
+        </PanelProvider>
+      )
 
       const component = await screen.findByAltText(books[0].title)
       expect(component).toBeInTheDocument()
     })
+
     it('should return the book when clicked', async () => {
       const books: Book[] = BookMother.createList(1)
 
@@ -78,8 +107,7 @@ describe('Reading Component', () => {
         books: books.map((b) => {
           return { ...b, position: Number.MAX_SAFE_INTEGER } as BookReading
         }),
-        total: books.length,
-        show: false
+        total: books.length
       }
 
       let bookFake: BookReading | undefined = undefined
@@ -87,8 +115,15 @@ describe('Reading Component', () => {
       const handler = (book: BookReading) => {
         bookFake = book
       }
+      const panelRepository = PanelRepositoryObjectMother.create({
+        panelState: PanelStateObjectMother.create({ panel: 'show' })
+      })
 
-      render(<ReadingComponent state={state} onRemoveBook={handler} />)
+      render(
+        <PanelProvider repository={panelRepository}>
+          <ReadingComponent state={state} onRemoveBook={handler} onSaveList={() => {}} />
+        </PanelProvider>
+      )
 
       const component = await screen.findByRole('button', { name: /borrar/i })
       fireEvent.click(component)
