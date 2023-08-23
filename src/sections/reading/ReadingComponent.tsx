@@ -1,5 +1,6 @@
 import { BookReading, ReadingState } from '@mod-reading/domain'
 import { useMemo } from 'react'
+import { usePanel } from '../panel/use-panel'
 import { ReadingBookCollection } from './components/ReadingBookCollection'
 import { ReadingEmpty } from './components/ReadingEmpty'
 
@@ -10,9 +11,10 @@ interface Props {
 }
 
 export function ReadingComponent({ state, onRemoveBook, onSaveList }: Props) {
+  const { panel } = usePanel()
   const hidden = useMemo(() => {
-    return state.show ? 'visible' : 'hidden'
-  }, [state.show])
+    return panel === 'show' ? 'visible' : 'hidden'
+  }, [panel])
 
   return (
     <section data-testid="reading-component" className={`bg-slate-600 px-8 rounded-2xl ${hidden}`}>

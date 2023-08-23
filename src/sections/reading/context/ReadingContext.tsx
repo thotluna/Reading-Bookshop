@@ -7,7 +7,7 @@ interface ReadingContext {
   repository: ReadingRepository
 }
 
-const INITIAL_READING_CONTEXT: ReadingState = { books: [], total: 0, show: false }
+const INITIAL_READING_CONTEXT: ReadingState = { books: [], total: 0 }
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const readingContext = createContext<ReadingContext>({} as ReadingContext)
@@ -28,7 +28,6 @@ type ReadingAction =
   | { type: 'remove'; payload: BookReading }
   | { type: 'saveAll'; payload: BookReading[] }
   | { type: 'saveState'; payload: ReadingState }
-  | { type: 'changeShow'; payload: boolean }
 
 export function ReadingReduce(state: ReadingState, action: ReadingAction): ReadingState {
   switch (action.type) {
@@ -68,12 +67,6 @@ export function ReadingReduce(state: ReadingState, action: ReadingAction): Readi
         ...state,
         books: action.payload,
         total: action.payload.length
-      }
-    }
-    case 'changeShow': {
-      return {
-        ...state,
-        show: action.payload
       }
     }
     case 'saveState': {

@@ -21,10 +21,6 @@ export function useReading() {
     return readingStore.books.some((b: BookReading) => b.ISBN === ISBN)
   }
 
-  const changePanel = (show: boolean) => {
-    dispatch({ type: 'changeShow', payload: show })
-  }
-
   const saveAllBooks = (books: BookReading[]) => {
     dispatch({ type: 'saveAll', payload: books })
   }
@@ -83,7 +79,7 @@ export function useReading() {
   }, [])
 
   useEffect(() => {
-    if (readingStore.books.length === 0 && readingStore.show === false && readingStore.total === 0) return
+    if (readingStore.books.length === 0 && readingStore.total === 0) return
     SaveStateReading(repository, readingStore)
   }, [readingStore, repository])
 
@@ -93,7 +89,6 @@ export function useReading() {
     delBook,
     saveAllBooks,
     excist,
-    changePanel,
     onSortAndSave
   }
 }
