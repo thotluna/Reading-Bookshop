@@ -23,13 +23,24 @@ test('should be order reading list ', async ({ page }) => {
     .getByRole('img', { name: 'Dune', exact: true })
     .dragTo(page.getByRole('img', { name: 'El Señor de los Anillos', exact: true }))
 
-  await expect(page.locator('div[draggable]').first().getByRole('img', { name: 'Dune', exact: true })).toBeVisible()
-
   await expect(
-    page.locator('div[draggable]').nth(1).getByRole('img', { name: 'El Señor de los Anillos', exact: true })
+    page
+      .locator('[data-testid="reading-component"] div[draggable]')
+      .first()
+      .getByRole('img', { name: 'Dune', exact: true })
   ).toBeVisible()
 
   await expect(
-    page.locator('div[draggable]').nth(2).getByRole('img', { name: 'Harry Potter y la piedra filosofal', exact: true })
+    page
+      .locator('[data-testid="reading-component"]  div[draggable]')
+      .nth(1)
+      .getByRole('img', { name: 'El Señor de los Anillos', exact: true })
+  ).toBeVisible()
+
+  await expect(
+    page
+      .locator('[data-testid="reading-component"]  div[draggable]')
+      .nth(2)
+      .getByRole('img', { name: 'Harry Potter y la piedra filosofal', exact: true })
   ).toBeVisible()
 })
