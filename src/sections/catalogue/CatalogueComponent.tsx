@@ -1,5 +1,5 @@
 import { GetCatalogue } from '@mod-catalogue/application'
-import { BookCatalogue, Catalogue, CatalogueRepository } from '@mod-catalogue/domain'
+import { Catalogue, CatalogueRepository } from '@mod-catalogue/domain'
 import { useEffect, useState } from 'react'
 import { Filters } from '../Filters'
 import { useFilters } from '../Filters/use-filters'
@@ -8,10 +8,9 @@ import { CatalogueEmpty } from './CatalogueEmpty'
 
 interface Props {
   repository: CatalogueRepository
-  toToggleBook: (book: BookCatalogue) => void
 }
 
-export function CatalogueComponent({ repository, toToggleBook }: Props) {
+export function CatalogueComponent({ repository }: Props) {
   const [state, setState] = useState<Catalogue>({ books: [], total: 0, avalaible: 0 })
   const { filtersState } = useFilters()
 
@@ -29,7 +28,7 @@ export function CatalogueComponent({ repository, toToggleBook }: Props) {
       </header>
       <Filters />
       <CatalogueEmpty collection={state.books} />
-      <CatalogoBookCollection collection={state.books} onAddReading={toToggleBook} />
+      <CatalogoBookCollection collection={state.books} />
     </section>
   )
 }
