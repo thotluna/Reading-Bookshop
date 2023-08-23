@@ -38,7 +38,7 @@ export class CatalogueRepositoryObjectMother {
   }): CatalogueRepository {
     const repository = {
       getCatalogue: vi.fn().mockResolvedValue(state)
-    }
+    } satisfies CatalogueRepository
 
     return {
       ...repository,
