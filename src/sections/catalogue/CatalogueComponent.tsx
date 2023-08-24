@@ -20,7 +20,7 @@ export function CatalogueComponent({ repository }: Props) {
   }, [repository, filtersState])
 
   return (
-    <section className="flex flex-col">
+    <section className="flex flex-col" data-testid="catalogue-component">
       <HeaderCatalogue available={state.avalaible} total={state.total} />
       <Filters />
       <CatalogueEmpty collection={state.books} />
