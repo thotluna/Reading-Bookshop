@@ -7,7 +7,15 @@ describe.only('BookCatlogue', () => {
   it.only('should render image', async () => {
     const book = BookMother.createList(1)[0]
 
-    render(<BookCatalogueComponent book={book} />)
+    render(
+      <BookCatalogueComponent
+        book={book}
+        onAddReading={() => {}}
+        onDragEnd={() => {}}
+        onDragOver={() => {}}
+        onDragStart={() => {}}
+      />
+    )
 
     const image = await screen.findByAltText(`Titulo: ${book.title}`)
     expect(image).toBeInTheDocument()
@@ -15,7 +23,15 @@ describe.only('BookCatlogue', () => {
   it.only('should render read button', async () => {
     const book = BookMother.createList(1)[0]
 
-    render(<BookCatalogueComponent book={book} onAddReading={() => {}} />)
+    render(
+      <BookCatalogueComponent
+        book={book}
+        onAddReading={() => {}}
+        onDragEnd={() => {}}
+        onDragOver={() => {}}
+        onDragStart={() => {}}
+      />
+    )
 
     const button = await screen.findByRole('button', { name: /agregar/i })
     expect(button).toBeInTheDocument()
