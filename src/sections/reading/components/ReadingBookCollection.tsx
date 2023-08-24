@@ -1,22 +1,24 @@
 import { BookReading } from '@mod-reading/domain'
+import { useDnD } from '@sec-reading/hooks/useDnd'
 import { useReading } from '..'
-import { useDragAndDrop } from '../hooks/useDragAndDrop'
 import BookDragAndDrop from './BookDragAndDrop'
 import { BookReadingComponent } from './BookReadingComponent'
 
 export function ReadingBookCollection() {
-  const { delBook, saveAllBooks, readingStore } = useReading()
-  const { onDragStart, onDragEnter, sortHandler } = useDragAndDrop<BookReading>(readingStore.books, saveAllBooks)
+  const { delBook, readingStore, onSortAndSave } = useReading()
 
-  if (readingStore.books.length === 0) return
+  const { onDragStart, onDragOver, onDragEnter, onDragEnd } = useDnD(onSortAndSave)
+
+  if (!readingStore.total || readingStore.total === 0) return
   return (
-    <section className="w-72  grid grid-cols-auto gap-4 justify-items-center">
+    <section className="w-72 grid grid-cols-auto gap-4 justify-items-center ">
       {readingStore.books.map((book) => (
         <BookDragAndDrop<BookReading>
           key={book.ISBN}
           onDragStart={onDragStart}
           onDragEnter={onDragEnter}
-          onDragEnd={sortHandler}
+          onDragEnd={onDragEnd}
+          onDragOver={onDragOver}
           book={book}
         >
           <BookReadingComponent

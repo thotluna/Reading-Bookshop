@@ -3,7 +3,7 @@ import { GetReading, SaveStateReading } from '@mod-reading/application'
 import { BookReading, ReadingState } from '@mod-reading/domain'
 import { ITEM_READING } from '@mod-reading/infraestructure'
 import { readingContext } from '@sec-reading/context'
-import { place } from '@sec-reading/context/DragAndDropContext'
+import { place } from '@sec-reading/context/DndContext'
 import { useCallback, useContext, useEffect } from 'react'
 
 export function useReading() {
@@ -58,31 +58,42 @@ export function useReading() {
   const onSortAndSave = useCallback(
     (bookDrag: BookCatalogue, reciveBook: BookCatalogue | undefined, placeBook: place | undefined) => {
       let books: BookReading[] = []
-      if (reciveBook) {
-        books = readingStore.books
 
-        const indexBookDrag = books.findIndex((b) => b.ISBN === bookDrag.ISBN)
-        const indexReciveBook = books.findIndex((b) => b.ISBN === reciveBook?.ISBN)
-
-        const draggedItemContext = books.splice(indexBookDrag, 1)[0]
-
-        books.splice(indexReciveBook, 0, draggedItemContext)
+      if (placeBook === place.CATALOGUE) {
+        books = readingStore.books.filter((book) => book.ISBN !== bookDrag.ISBN)
       } else {
-        books =
-          placeBook === place.READING
-            ? readingStore.books.concat({ ...bookDrag, position: 0 })
-            : readingStore.books.filter((book) => book.ISBN !== bookDrag.ISBN)
+        if (reciveBook) {
+          books = readingStore.books
+
+          const indexBookDrag = books.findIndex((b) => b.ISBN === bookDrag.ISBN)
+          const indexReciveBook = books.findIndex((b) => b.ISBN === reciveBook?.ISBN)
+
+          const draggedItemContext = books.splice(indexBookDrag, 1)[0]
+
+          books.splice(indexReciveBook, 0, draggedItemContext)
+        } else {
+          books =
+            placeBook === place.READING
+              ? readingStore.books.concat({ ...bookDrag, position: 0 })
+              : readingStore.books.filter((book) => book.ISBN !== bookDrag.ISBN)
+        }
       }
-      saveAllBooks(
-        books.map((book, i) => {
-          return {
-            ...book,
-            position: i
-          }
-        })
-      )
+
+      const booksSave = books.map((book, i) => {
+        return {
+          ...book,
+          position: i
+        }
+      })
+
+      saveAllBooks(booksSave)
+
+      SaveStateReading(repository, {
+        books: booksSave,
+        total: booksSave.length
+      } satisfies ReadingState)
     },
-    [readingStore.books, saveAllBooks]
+    [readingStore.books, repository, saveAllBooks]
   )
 
   useEffect(() => {
@@ -94,8 +105,14 @@ export function useReading() {
       if (event.key === ITEM_READING) {
         const stateRaw = event.newValue
         if (!stateRaw) return
-        const state = JSON.parse(stateRaw)
+        let state = JSON.parse(stateRaw)
         if (state === readingStore) return
+        if (!state.books) {
+          state = {
+            books: [],
+            total: 0
+          }
+        }
 
         dispatch({ type: 'saveState', payload: state })
       }
@@ -104,7 +121,7 @@ export function useReading() {
   }, [])
 
   useEffect(() => {
-    if (readingStore.books.length === 0 && readingStore.total === 0) return
+    if (readingStore.total === 0) return
     SaveStateReading(repository, readingStore)
   }, [readingStore, repository])
 
