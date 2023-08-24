@@ -19,7 +19,7 @@ describe('Filters', () => {
     render(
       <FiltersProvider repository={filtersRepository}>
         <ReadingProvider repository={readingRepository}>
-          <CatalogueComponent repository={catalogueRepository} toToggleBook={() => {}} />
+          <CatalogueComponent repository={catalogueRepository} />
         </ReadingProvider>
       </FiltersProvider>
     )
@@ -46,7 +46,7 @@ describe('Filters', () => {
     render(
       <FiltersProvider repository={filtersRepository}>
         <ReadingProvider repository={readingRepository}>
-          <CatalogueComponent repository={catalogueRepository} toToggleBook={() => {}} />
+          <CatalogueComponent repository={catalogueRepository} />
         </ReadingProvider>
       </FiltersProvider>
     )
@@ -71,7 +71,7 @@ describe('Filters', () => {
     render(
       <FiltersProvider repository={filtersRepository}>
         <ReadingProvider repository={readingRepository}>
-          <CatalogueComponent repository={catalogueRepository} toToggleBook={() => {}} />
+          <CatalogueComponent repository={catalogueRepository} />
         </ReadingProvider>
       </FiltersProvider>
     )
@@ -97,7 +97,7 @@ describe('Filters', () => {
     render(
       <FiltersProvider repository={filtersRepository}>
         <ReadingProvider repository={readingRepository}>
-          <CatalogueComponent repository={catalogueRepository} toToggleBook={() => {}} />
+          <CatalogueComponent repository={catalogueRepository} />
         </ReadingProvider>
       </FiltersProvider>
     )

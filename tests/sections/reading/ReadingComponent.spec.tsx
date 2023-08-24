@@ -17,14 +17,16 @@ describe('Reading Component', () => {
     render(
       <ReadingProvider repository={readingRepository}>
         <PanelProvider repository={panelRepository}>
-          <ReadingComponent state={state} onRemoveBook={() => {}} onSaveList={() => {}} />
+          <ReadingComponent />
         </PanelProvider>
       </ReadingProvider>
     )
 
-    const component = screen.queryByTestId('reading-component')
-    expect(component).toBeInTheDocument()
-    expect(component).toHaveClass('hidden')
+    waitFor(async () => {
+      const component = screen.queryByTestId('reading-component')
+      expect(component).toBeInTheDocument()
+      expect(component).toHaveClass('hidden')
+    })
   })
   it('should render visible', () => {
     const panelRepository = PanelRepositoryObjectMother.create({
@@ -38,14 +40,16 @@ describe('Reading Component', () => {
     render(
       <ReadingProvider repository={readingRepository}>
         <PanelProvider repository={panelRepository}>
-          <ReadingComponent state={state} onRemoveBook={() => {}} onSaveList={() => {}} />
+          <ReadingComponent />
         </PanelProvider>
       </ReadingProvider>
     )
 
-    const component = screen.queryByTestId('reading-component')
-    expect(component).toBeInTheDocument()
-    expect(component).toHaveClass('visible')
+    waitFor(async () => {
+      const component = screen.queryByTestId('reading-component')
+      expect(component).toBeInTheDocument()
+      expect(component).toHaveClass('visible')
+    })
   })
   describe('without books', () => {
     it('should render message without book', async () => {
@@ -61,7 +65,7 @@ describe('Reading Component', () => {
       render(
         <ReadingProvider repository={readingRepository}>
           <PanelProvider repository={panelRepository}>
-            <ReadingComponent state={state} onRemoveBook={() => {}} onSaveList={() => {}} />
+            <ReadingComponent />
           </PanelProvider>
         </ReadingProvider>
       )
@@ -84,7 +88,7 @@ describe('Reading Component', () => {
       render(
         <ReadingProvider repository={readingRepository}>
           <PanelProvider repository={panelRepository}>
-            <ReadingComponent state={state} onRemoveBook={() => {}} onSaveList={() => {}} />
+            <ReadingComponent />
           </PanelProvider>
         </ReadingProvider>
       )
@@ -108,7 +112,7 @@ describe('Reading Component', () => {
       render(
         <ReadingProvider repository={readingRepository}>
           <PanelProvider repository={panelRepository}>
-            <ReadingComponent state={state} onRemoveBook={() => {}} onSaveList={() => {}} />
+            <ReadingComponent />
           </PanelProvider>
         </ReadingProvider>
       )

@@ -14,33 +14,45 @@ test.describe('Home page', () => {
 })
 
 test('should be order reading list ', async ({ page }) => {
-  await page.getByRole('button', { name: 'Agregar El Señor de los Anillos' }).click()
-  await page.getByRole('button', { name: 'Agregar Harry Potter y la piedra filosofal' }).click()
-  await page.getByRole('button', { name: 'Agregar Dune' }).click()
+  await page.getByRole('button', { name: 'Agregar 1984' }).click()
+  await page.getByRole('button', { name: 'Agregar Fahrenheit 451' }).click()
+  await page.getByRole('button', { name: 'Agregar Drácula' }).click()
   await page.getByRole('button', { name: 'Mostrar los libros por leer' }).click()
 
   await page
-    .getByRole('img', { name: 'Dune', exact: true })
-    .dragTo(page.getByRole('img', { name: 'El Señor de los Anillos', exact: true }))
+    .getByRole('img', { name: 'Drácula', exact: true })
+    .dragTo(page.getByRole('img', { name: '1984', exact: true }))
 
   await expect(
     page
       .locator('[data-testid="reading-component"] div[draggable]')
       .first()
-      .getByRole('img', { name: 'Dune', exact: true })
+      .getByRole('img', { name: 'Drácula', exact: true })
   ).toBeVisible()
+})
+
+test('should move a book from catalog to reading  ', async ({ page }) => {
+  await page.getByRole('button', { name: 'Mostrar los libros por leer' }).click()
+  await expect(page.getByRole('img', { name: 'Titulo: Drácula', exact: true })).toBeInViewport()
+  await expect(page.getByTestId('reading-component')).toBeInViewport()
+  await page.getByRole('img', { name: 'Titulo: Drácula', exact: true }).dragTo(page.getByTestId('reading-component'))
 
   await expect(
     page
-      .locator('[data-testid="reading-component"]  div[draggable]')
-      .nth(1)
-      .getByRole('img', { name: 'El Señor de los Anillos', exact: true })
+      .locator('[data-testid="reading-component"] div[draggable]')
+      .first()
+      .getByRole('img', { name: 'Drácula', exact: true })
   ).toBeVisible()
+})
 
-  await expect(
-    page
-      .locator('[data-testid="reading-component"]  div[draggable]')
-      .nth(2)
-      .getByRole('img', { name: 'Harry Potter y la piedra filosofal', exact: true })
-  ).toBeVisible()
+test('should remove the book when you drag it from reading to the catalog  ', async ({ page }) => {
+  await page.getByRole('button', { name: 'Mostrar los libros por leer' }).click()
+
+  await page.getByRole('button', { name: 'Agregar Drácula', exact: true }).click()
+
+  await page
+    .getByRole('img', { name: 'Drácula', exact: true })
+    .dragTo(page.getByRole('img', { name: 'Titulo: Drácula', exact: true }))
+
+  await expect(page.locator('[data-testid="reading-component"] div[draggable]')).toHaveCount(0)
 })

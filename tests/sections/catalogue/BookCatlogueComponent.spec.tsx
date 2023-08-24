@@ -7,7 +7,7 @@ describe.only('BookCatlogue', () => {
   it.only('should render image', async () => {
     const book = BookMother.createList(1)[0]
 
-    render(<BookCatalogueComponent book={book} onAddReading={() => {}} />)
+    render(<BookCatalogueComponent book={book} />)
 
     const image = await screen.findByAltText(`Titulo: ${book.title}`)
     expect(image).toBeInTheDocument()
