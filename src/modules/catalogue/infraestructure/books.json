@@ -30,25 +30,7 @@
         }
       }
     },
-    {
-      "book": {
-        "title": "Harry Potter y la piedra filosofal",
-        "pages": 223,
-        "genre": "Fantasía",
-        "cover": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1550337333i/15868.jpg",
-        "synopsis": "Un niño descubre que es un mago y comienza una aventura en una escuela de magia.",
-        "year": 1997,
-        "ISBN": "978-0747532699",
-        "author": {
-          "name": "J.K. Rowling",
-          "otherBooks": [
-            "Harry Potter y la cámara secreta",
-            "Harry Potter y el prisionero de Azkaban",
-            "Harry Potter y el cáliz de fuego"
-          ]
-        }
-      }
-    },
+
     {
       "book": {
         "title": "1984",
@@ -76,6 +58,21 @@
         "author": {
           "name": "Manel Loreiro",
           "otherBooks": []
+        }
+      }
+    },
+    {
+      "book": {
+        "title": "Drácula",
+        "pages": 418,
+        "genre": "Terror",
+        "cover": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1387151694i/17245.jpg",
+        "synopsis": "La historia del infame conde Drácula y su intento de mudarse de Transilvania a Inglaterra.",
+        "year": 1897,
+        "ISBN": "978-0486411095",
+        "author": {
+          "name": "Bram Stoker",
+          "otherBooks": ["La joya de las siete estrellas", "La madriguera del gusano blanco"]
         }
       }
     },
@@ -156,21 +153,6 @@
     },
     {
       "book": {
-        "title": "Drácula",
-        "pages": 418,
-        "genre": "Terror",
-        "cover": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1387151694i/17245.jpg",
-        "synopsis": "La historia del infame conde Drácula y su intento de mudarse de Transilvania a Inglaterra.",
-        "year": 1897,
-        "ISBN": "978-0486411095",
-        "author": {
-          "name": "Bram Stoker",
-          "otherBooks": ["La joya de las siete estrellas", "La madriguera del gusano blanco"]
-        }
-      }
-    },
-    {
-      "book": {
         "title": "Frankenstein",
         "pages": 280,
         "genre": "Terror",
@@ -196,6 +178,25 @@
         "author": {
           "name": "H.P. Lovecraft",
           "otherBooks": ["El horror de Dunwich", "En las montañas de la locura"]
+        }
+      }
+    },
+    {
+      "book": {
+        "title": "Harry Potter y la piedra filosofal",
+        "pages": 223,
+        "genre": "Fantasía",
+        "cover": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1550337333i/15868.jpg",
+        "synopsis": "Un niño descubre que es un mago y comienza una aventura en una escuela de magia.",
+        "year": 1997,
+        "ISBN": "978-0747532699",
+        "author": {
+          "name": "J.K. Rowling",
+          "otherBooks": [
+            "Harry Potter y la cámara secreta",
+            "Harry Potter y el prisionero de Azkaban",
+            "Harry Potter y el cáliz de fuego"
+          ]
         }
       }
     }
