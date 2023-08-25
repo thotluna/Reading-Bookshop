@@ -1,9 +1,9 @@
-import { BookReading, ReadingRepository, ReadingState } from '../../../../src/modules/reading/domain'
+import { BookWithPosition, ReadingRepository, ReadingState } from '../../../../src/modules/reading/domain'
 import { BookMother } from '../../catalogue/domain/models'
 
 export class ReadingStateObjectMother {
-  static create({ count, booksReading }: { count?: number; booksReading?: BookReading[] }): ReadingState {
-    const books: BookReading[] = BookMother.createList(count ?? 1).map((book, i) => {
+  static create({ count, booksReading }: { count?: number; booksReading?: BookWithPosition[] }): ReadingState {
+    const books: BookWithPosition[] = BookMother.createList(count ?? 1).map((book, i) => {
       return {
         ...book,
         position: i

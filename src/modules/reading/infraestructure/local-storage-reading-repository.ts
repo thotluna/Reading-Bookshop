@@ -1,5 +1,4 @@
-import { ReadingState } from '../domain'
-import { ReadingRepository } from '../domain/reading-repository'
+import { ReadingRepository, ReadingState } from '@mod-reading/domain'
 
 export function LocalStorageReadingRepository(): ReadingRepository {
   return {

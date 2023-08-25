@@ -1,10 +1,6 @@
-import { Book } from '@mod-catalogue/domain'
-
-export interface BookReading extends Pick<Book, 'ISBN' | 'cover' | 'title'> {
-  position: number
-}
+import { BookWithPosition } from './book-with-position'
 
 export interface ReadingState {
-  books: BookReading[]
+  books: BookWithPosition[]
   total: number
 }

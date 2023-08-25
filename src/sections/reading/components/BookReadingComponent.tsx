@@ -1,10 +1,10 @@
 import { ReactComponent as DragAndDrop } from '@assets/drag.svg'
-import { BookReading } from '@mod-reading/domain'
+import { BookWithPosition } from '@mod-reading/domain/book-with-position'
 import { Image } from '../../components/Image'
 import { RemoveButton } from './RemoveButton'
 
 interface Props {
-  book: BookReading
+  book: BookWithPosition
   onRemoveBook: () => void
 }
 

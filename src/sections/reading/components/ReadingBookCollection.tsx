@@ -1,4 +1,4 @@
-import { BookReading } from '@mod-reading/domain'
+import { BookWithPosition } from '@mod-reading/domain/book-with-position'
 import { useDnD } from '@sec-reading/hooks/useDnd'
 import { useReading } from '..'
 import BookDragAndDrop from './BookDragAndDrop'
@@ -13,7 +13,7 @@ export function ReadingBookCollection() {
   return (
     <section className="w-72 grid grid-cols-auto gap-4 justify-items-center ">
       {readingStore.books.map((book) => (
-        <BookDragAndDrop<BookReading>
+        <BookDragAndDrop<BookWithPosition>
           key={book.ISBN}
           onDragStart={onDragStart}
           onDragEnter={onDragEnter}

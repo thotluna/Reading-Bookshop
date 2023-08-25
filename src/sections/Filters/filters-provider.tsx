@@ -1,6 +1,5 @@
-import { FiltersState } from '@mod-catalogue/domain'
 import { GetFilters } from '@mod-filters/application'
-import { FiltersRepository } from '@mod-filters/domain'
+import { FiltersRepository, FiltersState } from '@mod-filters/domain'
 import { useReducer } from 'react'
 import { filtersContext } from './filters-context'
 import { filtersReducer } from './filters-reducers'

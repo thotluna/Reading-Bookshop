@@ -1,6 +1,6 @@
 import { BookBasic } from '@mod-catalogue/domain'
 import { GetReading, SaveStateReading } from '@mod-reading/application'
-import { BookReading, ReadingState } from '@mod-reading/domain'
+import { BookWithPosition, ReadingState } from '@mod-reading/domain'
 import { ITEM_READING } from '@mod-reading/infraestructure'
 import { readingContext } from '@sec-reading/context'
 import { place } from '@sec-reading/context/DndContext'
@@ -10,14 +10,14 @@ export function useReading() {
   const { readingStore, dispatch, repository } = useContext(readingContext)
 
   const addBook = useCallback(
-    (book: BookReading) => {
+    (book: BookWithPosition) => {
       dispatch({ type: 'save', payload: book })
     },
     [dispatch]
   )
 
   const delBook = useCallback(
-    (book: BookReading) => {
+    (book: BookWithPosition) => {
       dispatch({ type: 'remove', payload: book })
     },
     [dispatch]
@@ -25,7 +25,7 @@ export function useReading() {
 
   const excist = useCallback(
     (ISBN: string) => {
-      return readingStore.books.some((b: BookReading) => b.ISBN === ISBN)
+      return readingStore.books.some((b: BookWithPosition) => b.ISBN === ISBN)
     },
     [readingStore.books]
   )
@@ -42,7 +42,7 @@ export function useReading() {
   )
 
   const saveAllBooks = useCallback(
-    (books: BookReading[]) => {
+    (books: BookWithPosition[]) => {
       dispatch({ type: 'saveAll', payload: books })
     },
     [dispatch]
@@ -57,7 +57,7 @@ export function useReading() {
 
   const onSortAndSave = useCallback(
     (bookDrag: BookBasic, reciveBook: BookBasic | undefined, placeBook: place | undefined) => {
-      let books: BookReading[] = []
+      let books: BookWithPosition[] = []
 
       if (placeBook === place.CATALOGUE) {
         books = readingStore.books.filter((book) => book.ISBN !== bookDrag.ISBN)

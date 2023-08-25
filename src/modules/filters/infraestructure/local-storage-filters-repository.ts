@@ -1,5 +1,4 @@
-import { FiltersState } from '@mod-catalogue/domain'
-import { FiltersRepository } from '../domain'
+import { FiltersRepository, FiltersState } from '../domain'
 
 export function LocalStorageFiltersRepository(): FiltersRepository {
   return {

@@ -1,4 +1,5 @@
-import { BookReading, ReadingRepository, ReadingState } from '@mod-reading/domain'
+import { ReadingRepository, ReadingState } from '@mod-reading/domain'
+import { BookWithPosition } from '@mod-reading/domain/book-with-position'
 import { createContext, useReducer } from 'react'
 
 interface ReadingContext {
@@ -24,9 +25,9 @@ export function ReadingProvider({ children, repository }: Props) {
 }
 
 type ReadingAction =
-  | { type: 'save'; payload: BookReading }
-  | { type: 'remove'; payload: BookReading }
-  | { type: 'saveAll'; payload: BookReading[] }
+  | { type: 'save'; payload: BookWithPosition }
+  | { type: 'remove'; payload: BookWithPosition }
+  | { type: 'saveAll'; payload: BookWithPosition[] }
   | { type: 'saveState'; payload: ReadingState }
 
 export function ReadingReduce(state: ReadingState, action: ReadingAction): ReadingState {

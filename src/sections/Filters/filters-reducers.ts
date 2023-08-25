@@ -1,4 +1,5 @@
-import { FiltersState, Gender } from '@mod-catalogue/domain'
+import { Gender } from '@mod-catalogue/domain'
+import { FiltersState } from '@mod-filters/domain'
 
 export type FiltersActions =
   | { type: 'addGender'; payload: Gender }

@@ -1,5 +1,5 @@
-import { Book } from '../domain/models'
+import { Book } from '@mod-catalogue/domain'
 
-export interface BookDto extends Omit<Book, 'gender'> {
+export interface BookDto extends Book {
   genre: string
 }
