@@ -1,17 +1,17 @@
-import { BookCatalogue } from '@mod-catalogue/domain'
+import { BookBasic } from '@mod-catalogue/domain'
 import { dndContext, place } from '@sec-reading/context/DndContext'
 
 import { useContext } from 'react'
 
 export function useDnD(
-  onSortAndSave?: (bookDrag: BookCatalogue, reciveBook: BookCatalogue | undefined, placeBook: place | undefined) => void
+  onSortAndSave?: (bookDrag: BookBasic, reciveBook: BookBasic | undefined, placeBook: place | undefined) => void
 ) {
   const { bookDrag, reciveBook, placeBook } = useContext(dndContext)
 
-  const onDragStart = (book: BookCatalogue) => {
+  const onDragStart = (book: BookBasic) => {
     bookDrag.current = book
   }
-  const onDragEnter = (book: BookCatalogue) => {
+  const onDragEnter = (book: BookBasic) => {
     reciveBook.current = book
   }
 

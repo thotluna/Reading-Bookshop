@@ -1,4 +1,4 @@
-import { BookCatalogue } from '@mod-catalogue/domain'
+import { BookBasic } from '@mod-catalogue/domain'
 import { GetReading, SaveStateReading } from '@mod-reading/application'
 import { BookReading, ReadingState } from '@mod-reading/domain'
 import { ITEM_READING } from '@mod-reading/infraestructure'
@@ -31,7 +31,7 @@ export function useReading() {
   )
 
   const toggleReading = useCallback(
-    (book: BookCatalogue) => {
+    (book: BookBasic) => {
       if (excist(book.ISBN)) {
         delBook({ ...book, position: 0 })
       } else {
@@ -56,7 +56,7 @@ export function useReading() {
   )
 
   const onSortAndSave = useCallback(
-    (bookDrag: BookCatalogue, reciveBook: BookCatalogue | undefined, placeBook: place | undefined) => {
+    (bookDrag: BookBasic, reciveBook: BookBasic | undefined, placeBook: place | undefined) => {
       let books: BookReading[] = []
 
       if (placeBook === place.CATALOGUE) {

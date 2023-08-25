@@ -1,11 +1,11 @@
-import { BookCatalogue } from '@mod-catalogue/domain'
+import { BookBasic } from '@mod-catalogue/domain'
 import { place } from '@sec-reading/context/DndContext'
 import { useReading } from '@sec-reading/hooks'
 import { useDnD } from '@sec-reading/hooks/useDnd'
 import { BookCatalogueComponent } from '.'
 
 interface Props {
-  collection: BookCatalogue[]
+  collection: BookBasic[]
 }
 
 export function CatalogoBookCollection({ collection }: Props) {

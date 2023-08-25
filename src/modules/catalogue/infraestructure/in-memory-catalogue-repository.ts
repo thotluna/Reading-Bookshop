@@ -1,5 +1,4 @@
-import { CatalogueRepository } from '../domain/catalogue-repository'
-import { BookCatalogue, Catalogue, FiltersState, Gender } from '../domain/models'
+import { Catalogue, CatalogueRepository, FiltersState, Gender } from '@mod-catalogue/domain'
 import { BookDto } from './book-dto'
 import Bookshop from './books.json'
 
@@ -40,9 +39,11 @@ function getCatalogo(filters?: FiltersState): Promise<Catalogue> {
   return Promise.resolve({
     books: books.map((book) => {
       return {
-        ...book,
+        ISBN: book.ISBN,
+        title: book.title,
+        cover: book.cover,
         gender: book.genre as Gender
-      } as BookCatalogue
+      }
     }),
     total,
     avalaible

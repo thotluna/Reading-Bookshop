@@ -1,12 +1,12 @@
-import { BookCatalogue } from '@mod-catalogue/domain'
+import { BookBasic } from '@mod-catalogue/domain'
 import { Image } from '@sec-components'
 import { place } from '@sec-reading/context/DndContext'
 import ReadButton from './ReadButton'
 
 interface Props {
-  book: BookCatalogue
+  book: BookBasic
   onAddReading: () => void
-  onDragStart: (book: BookCatalogue) => void
+  onDragStart: (book: BookBasic) => void
   onDragOver: (place: place) => void
   onDragEnd: () => void
 }

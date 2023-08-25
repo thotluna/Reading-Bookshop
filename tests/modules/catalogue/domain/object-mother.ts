@@ -1,4 +1,4 @@
-import { BookCatalogue, Catalogue, CatalogueRepository } from '@mod-catalogue/domain'
+import { BookBasic, Catalogue, CatalogueRepository } from '@mod-catalogue/domain'
 import { BookMother } from './models'
 
 type PartialCatalogue = Partial<Catalogue>
@@ -13,7 +13,7 @@ export class CatalogueObjectMother {
     state?: Catalogue
     count?: number
   }): Catalogue {
-    const books = BookMother.createList(count ?? 5).map((b: BookCatalogue) => b) satisfies BookCatalogue[]
+    const books = BookMother.createList(count ?? 5).map((b: BookBasic) => b) satisfies BookBasic[]
     const catalogue = {
       books: state ? state.books : books,
       total: state ? state.total : books.length,

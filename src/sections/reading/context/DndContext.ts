@@ -1,4 +1,4 @@
-import { BookCatalogue } from '@mod-catalogue/domain'
+import { BookBasic } from '@mod-catalogue/domain'
 import { MutableRefObject, createContext } from 'react'
 
 export const enum place {
@@ -7,8 +7,8 @@ export const enum place {
 }
 
 interface DndContext {
-  bookDrag: MutableRefObject<BookCatalogue | undefined>
-  reciveBook: MutableRefObject<BookCatalogue | undefined>
+  bookDrag: MutableRefObject<BookBasic | undefined>
+  reciveBook: MutableRefObject<BookBasic | undefined>
   placeBook: MutableRefObject<place | undefined>
 }
 

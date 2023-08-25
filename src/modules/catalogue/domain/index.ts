@@ -1,2 +1,5 @@
+export * from './book-basic'
+export * from './catalogue'
 export * from './catalogue-repository'
+export * from './gender'
 export * from './models'

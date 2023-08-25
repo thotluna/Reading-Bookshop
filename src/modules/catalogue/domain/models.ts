@@ -1,9 +1,9 @@
+import { Gender } from './gender'
+
 export interface Author {
   name: string
   otherBooks: string[]
 }
-
-export type Gender = 'Fantasía' | 'Ciencia ficción' | 'Zombies' | 'Terror'
 
 export interface Book {
   title: string
@@ -17,12 +17,6 @@ export interface Book {
 }
 
 export interface BookCatalogue extends Pick<Book, 'ISBN' | 'cover' | 'title'> {}
-
-export interface Catalogue {
-  books: BookCatalogue[]
-  total: number
-  avalaible: number
-}
 
 export interface FiltersState {
   genders: Gender[]

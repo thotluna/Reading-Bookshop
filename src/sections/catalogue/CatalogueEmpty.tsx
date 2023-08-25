@@ -1,8 +1,8 @@
 import { ReactComponent as SearchDraw } from '@assets/search-draw.svg'
-import { BookCatalogue } from '@mod-catalogue/domain'
+import { BookBasic } from '@mod-catalogue/domain'
 
 interface Props {
-  collection: BookCatalogue[]
+  collection: BookBasic[]
 }
 
 export function CatalogueEmpty({ collection }: Props) {
