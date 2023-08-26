@@ -56,44 +56,44 @@ export function useReading() {
   )
 
   const onSortAndSave = useCallback(
-    (bookDrag: BookBasic, reciveBook: BookBasic | undefined, placeBook: place | undefined) => {
-      let books: BookWithPosition[] = []
-
-      if (placeBook === place.CATALOGUE) {
-        books = readingStore.books.filter((book) => book.ISBN !== bookDrag.ISBN)
-      } else {
-        if (reciveBook) {
-          books = readingStore.books
-
-          const indexBookDrag = books.findIndex((b) => b.ISBN === bookDrag.ISBN)
-          const indexReciveBook = books.findIndex((b) => b.ISBN === reciveBook?.ISBN)
-
-          const draggedItemContext = books.splice(indexBookDrag, 1)[0]
-
-          books.splice(indexReciveBook, 0, draggedItemContext)
-        } else {
-          books =
-            placeBook === place.READING
-              ? readingStore.books.concat({ ...bookDrag, position: 0 })
-              : readingStore.books.filter((book) => book.ISBN !== bookDrag.ISBN)
-        }
+    (goal: BookBasic, displaced?: BookBasic, zone?: place) => {
+      if (zone === place.READING && excist(goal.ISBN) && !displaced) return
+      if (zone === place.CATALOGUE && !excist(goal.ISBN)) return
+      let books = readingStore.books
+      if (zone === place.CATALOGUE && excist(goal.ISBN)) {
+        books = books.filter((b) => b.ISBN !== goal.ISBN)
       }
 
-      const booksSave = books.map((book, i) => {
+      if (zone === place.READING && !excist(goal.ISBN) && !displaced) {
+        books = books.concat({ ...goal, position: 0 })
+      }
+      if (zone === place.READING && displaced) {
+        let temp = books
+        if (!excist(goal.ISBN)) {
+          temp = temp.concat({ ...goal, position: 0 })
+        }
+        const indexGoal = temp.findIndex((b) => b.ISBN === goal.ISBN)
+        const indexDisplaced = temp.findIndex((b) => b.ISBN === displaced.ISBN)
+
+        const draggedItemContext = temp.splice(indexGoal, 1)[0]
+        temp.splice(indexDisplaced, 0, draggedItemContext)
+        books = temp
+      }
+
+      const booksSorted = books.map((b, i) => {
         return {
-          ...book,
+          ...b,
           position: i
         }
       })
 
-      saveAllBooks(booksSave)
-
+      saveAllBooks(booksSorted)
       SaveStateReading(repository, {
-        books: booksSave,
-        total: booksSave.length
-      } satisfies ReadingState)
+        books: booksSorted,
+        total: booksSorted.length
+      })
     },
-    [readingStore.books, repository, saveAllBooks]
+    [excist, readingStore.books, repository, saveAllBooks]
   )
 
   useEffect(() => {
