@@ -1,7 +1,7 @@
 import { GetCatalogue } from '@mod-catalogue/application'
 import { Catalogue, CatalogueRepository } from '@mod-catalogue/domain'
 import { useEffect, useState } from 'react'
-import Filters from '../Filters'
+import { FilterComponent } from '../Filters/filters'
 import { useFilters } from '../Filters/use-filters'
 import { CatalogoBookCollection } from './CatalogoBookCollection'
 import { CatalogueEmpty } from './CatalogueEmpty'
@@ -22,7 +22,7 @@ export function CatalogueComponent({ repository }: Props) {
   return (
     <section className="flex flex-col" data-testid="catalogue-component">
       <HeaderCatalogue available={state.avalaible} total={state.total} />
-      <Filters />
+      <FilterComponent />
       <CatalogueEmpty collection={state.books} />
       <CatalogoBookCollection collection={state.books} />
     </section>

@@ -1,5 +1,4 @@
-import { FiltersState } from '@mod-catalogue/domain'
-import { FiltersRepository } from '@mod-filters/domain'
+import { FiltersRepository, FiltersState } from '@mod-filters/domain'
 import { vi } from 'vitest'
 
 type partialFiltersState = Partial<FiltersState>

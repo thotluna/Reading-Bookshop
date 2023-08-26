@@ -1,5 +1,5 @@
-import { Catalogue, CatalogueRepository, FiltersState, Gender } from '@mod-catalogue/domain'
-import { BookDto } from './book-dto'
+import { Catalogue, CatalogueRepository, Gender } from '@mod-catalogue/domain'
+import { FiltersState } from '@mod-filters/domain'
 import Bookshop from './books.json'
 
 export const InMemoryCatalogueRepository = (): CatalogueRepository => {
@@ -9,7 +9,7 @@ export const InMemoryCatalogueRepository = (): CatalogueRepository => {
 }
 
 function getCatalogo(filters?: FiltersState): Promise<Catalogue> {
-  let books: BookDto[] = Bookshop.library.map((b) => b.book)
+  let books = Bookshop.library.map((b) => b.book)
   const total = books.length
 
   if (filters && filters?.genders?.length > 0) {

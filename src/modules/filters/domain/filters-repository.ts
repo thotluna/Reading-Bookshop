@@ -1,4 +1,4 @@
-import { FiltersState } from '@mod-catalogue/domain'
+import { FiltersState } from '.'
 
 export interface FiltersRepository {
   get: () => FiltersState
