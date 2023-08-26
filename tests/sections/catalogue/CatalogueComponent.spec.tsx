@@ -62,7 +62,7 @@ describe('CatalogueComponent', () => {
 
       const title = await screen.findByText('Uff! Actualmente no contamos con libros disponibles.')
       expect(title).toBeInTheDocument()
-      const subTitle = await screen.findByText('Podrias modificar los filtros para mejorar la busqueda.')
+      const subTitle = await screen.findByText('Podrías modificar los filtros para mejorar la búsqueda.')
       expect(subTitle).toBeInTheDocument()
     })
   })
@@ -167,7 +167,7 @@ describe('CatalogueComponent', () => {
           </FiltersProvider>
         )
 
-        const searchElement: HTMLInputElement = screen.getByRole('textbox', { name: /Busqueda/i })
+        const searchElement: HTMLInputElement = screen.getByRole('textbox', { name: /Búsqueda/i })
         expect(searchElement).toBeInTheDocument()
         fireEvent.change(searchElement, { target: { value: search } })
         await waitFor(async () => {
@@ -203,7 +203,7 @@ describe('CatalogueComponent', () => {
         const slider: HTMLInputElement = screen.getByRole('slider', { name: /Max Paginas:/ })
         fireEvent.change(slider, { target: { value: pages } })
 
-        const searchElement: HTMLInputElement = screen.getByRole('textbox', { name: /Busqueda/i })
+        const searchElement: HTMLInputElement = screen.getByRole('textbox', { name: /Búsqueda/i })
         expect(searchElement).toBeInTheDocument()
         fireEvent.change(searchElement, { target: { value: search } })
 

@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react'
 import { describe, it } from 'vitest'
 import { BookMother } from '../../modules/catalogue/domain/models'
 
-describe.only('BookCatlogue', () => {
+describe.only('BookCatalogue', () => {
   it.only('should render image', async () => {
     const book = BookMother.createList(1)[0]
 
@@ -17,7 +17,7 @@ describe.only('BookCatlogue', () => {
       />
     )
 
-    const image = await screen.findByAltText(`Titulo: ${book.title}`)
+    const image = await screen.findByAltText(`Título: ${book.title}`)
     expect(image).toBeInTheDocument()
   })
   it.only('should render read button', async () => {

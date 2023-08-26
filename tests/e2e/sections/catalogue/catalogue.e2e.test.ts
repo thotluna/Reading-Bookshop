@@ -19,7 +19,7 @@ test.describe('Home page', () => {
     await expect(page.getByLabel('Max Paginas')).toBeVisible()
   })
   test('has label for search filters', async ({ page }) => {
-    await expect(page.getByLabel('Busqueda')).toBeVisible()
+    await expect(page.getByLabel('Búsqueda')).toBeVisible()
   })
   test.describe('without book', () => {
     test('should render image search', async ({ page }) => {
@@ -28,7 +28,7 @@ test.describe('Home page', () => {
   })
   test.describe('with book', () => {
     test('should render image of books', async ({ page }) => {
-      await expect(page.getByAltText(/Titulo/)).toHaveCount(13)
+      await expect(page.getByAltText(/Título/)).toHaveCount(13)
     })
     test('should render add button', async ({ page }) => {
       const book = page
@@ -39,7 +39,7 @@ test.describe('Home page', () => {
     test('should render cover image', async ({ page }) => {
       const book = page
         .getByTestId('book-catalogue')
-        .filter({ has: page.getByRole('img', { name: /titulo: el señor de los anillos/i }) })
+        .filter({ has: page.getByRole('img', { name: /título: el señor de los anillos/i }) })
       await expect(book).toBeVisible()
     })
     test.describe('with filtered', () => {
@@ -85,12 +85,12 @@ test.describe('Home page', () => {
         await expect(available).toBeVisible()
         await expect(available).toContainText('13/13')
 
-        await page.getByLabel('Busqueda').type('señor')
+        await page.getByLabel('Búsqueda').type('señor')
 
         await expect(available).toContainText('1/13')
         await expect(page.getByTestId('book-catalogue')).toHaveCount(1)
 
-        await page.getByLabel('Busqueda').clear()
+        await page.getByLabel('Búsqueda').clear()
 
         await expect(available).toBeVisible()
         await expect(page.getByTestId('book-catalogue')).toHaveCount(13)

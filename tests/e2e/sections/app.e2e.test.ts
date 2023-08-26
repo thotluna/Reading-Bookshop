@@ -6,7 +6,7 @@ test.beforeEach(async ({ page }) => {
 
 test.describe('Home page', () => {
   test('has title', async ({ page }) => {
-    await expect(page).toHaveTitle(/vite/i)
+    await expect(page).toHaveTitle('Reading Bookshop')
   })
   test('has name the app', async ({ page }) => {
     await expect(page.getByText('Reading Bookshop')).toBeVisible()
@@ -33,9 +33,9 @@ test('should be order reading list ', async ({ page }) => {
 
 test('should move a book from catalog to reading  ', async ({ page }) => {
   await page.getByRole('button', { name: 'Mostrar los libros por leer' }).click()
-  await expect(page.getByRole('img', { name: 'Titulo: Drácula', exact: true })).toBeInViewport()
+  await expect(page.getByRole('img', { name: 'Título: Drácula', exact: true })).toBeInViewport()
   await expect(page.getByTestId('reading-component')).toBeInViewport()
-  await page.getByRole('img', { name: 'Titulo: Drácula', exact: true }).dragTo(page.getByTestId('reading-component'))
+  await page.getByRole('img', { name: 'Título: Drácula', exact: true }).dragTo(page.getByTestId('reading-component'))
 
   await expect(
     page
@@ -52,7 +52,7 @@ test('should remove the book when you drag it from reading to the catalog  ', as
 
   await page
     .getByRole('img', { name: 'Drácula', exact: true })
-    .dragTo(page.getByRole('img', { name: 'Titulo: Drácula', exact: true }))
+    .dragTo(page.getByRole('img', { name: 'Título: Drácula', exact: true }))
 
   await expect(page.locator('[data-testid="reading-component"] div[draggable]')).toHaveCount(0)
 })

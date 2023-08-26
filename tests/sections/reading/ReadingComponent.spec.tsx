@@ -70,7 +70,7 @@ describe('Reading Component', () => {
         </ReadingProvider>
       )
 
-      const component = await screen.findByText(/Todavia no has seleccionado ningun libro para leer./i)
+      const component = await screen.findByText(/Todavía no has seleccionado ningún libro para leer./i)
       expect(component).toBeInTheDocument()
     })
   })
