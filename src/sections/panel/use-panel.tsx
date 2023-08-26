@@ -1,5 +1,5 @@
 import { GetPanel, TogglePanel } from '@mod-panel/application'
-import { ITEM_PANEL } from '@mod-panel/infraestructure'
+import { ITEM_PANEL } from '@mod-panel/infrastructure'
 import { useContext, useEffect } from 'react'
 import { panelContext } from './panel-context'
 

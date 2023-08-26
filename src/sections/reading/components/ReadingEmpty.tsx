@@ -8,7 +8,7 @@ export function ReadingEmpty() {
     <section className="w-72 h-full flex flex-col items-center justify-center">
       <SearchDraw width={100} height={100} />
       <h2 className="pt-8 text-2xl inline-block w-64 text-center">
-        Todavia no has seleccionado ningun libro para leer.
+        Todavía no has seleccionado ningún libro para leer.
       </h2>
     </section>
   )

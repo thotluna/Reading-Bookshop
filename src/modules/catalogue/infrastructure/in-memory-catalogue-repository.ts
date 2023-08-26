@@ -34,7 +34,7 @@ function getCatalogo(filters?: FiltersState): Promise<Catalogue> {
     })
   }
 
-  const avalaible = books.length
+  const available = books.length
 
   return Promise.resolve({
     books: books.map((book) => {
@@ -46,6 +46,6 @@ function getCatalogo(filters?: FiltersState): Promise<Catalogue> {
       }
     }),
     total,
-    avalaible
+    available: available
   })
 }

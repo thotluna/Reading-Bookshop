@@ -1,7 +1,7 @@
 import { BookBasic } from '@mod-catalogue/domain'
 import { GetReading, SaveStateReading } from '@mod-reading/application'
 import { BookWithPosition, ReadingState } from '@mod-reading/domain'
-import { ITEM_READING } from '@mod-reading/infraestructure'
+import { ITEM_READING } from '@mod-reading/infrastructure'
 import { readingContext } from '@sec-reading/context'
 import { place } from '@sec-reading/context/DndContext'
 import { useCallback, useContext, useEffect } from 'react'

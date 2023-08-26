@@ -1,6 +1,6 @@
 import { Gender } from '@mod-catalogue/domain'
 import { SaveFilters } from '@mod-filters/application'
-import { ITEM_FILTERS } from '@mod-filters/infraestructure'
+import { ITEM_FILTERS } from '@mod-filters/infrastructure'
 import { useCallback, useContext, useEffect } from 'react'
 import { filtersContext } from './filters-context'
 

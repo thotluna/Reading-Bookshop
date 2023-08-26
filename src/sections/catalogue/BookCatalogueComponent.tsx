@@ -24,7 +24,7 @@ export function BookCatalogueComponent({ book, onAddReading, onDragStart, onDrag
       }}
       onDragEnd={onDragEnd}
     >
-      <Image className="" src={book.cover} alt={`Titulo: ${book.title}`} />
+      <Image className="" src={book.cover} alt={`Título: ${book.title}`} />
       <ReadButton title={book.title} clasName="absolute top-3 right-2 bg-black" onAddReading={onAddReading} />
     </article>
   )

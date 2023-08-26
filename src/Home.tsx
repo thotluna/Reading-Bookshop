@@ -1,5 +1,5 @@
-import { InMemoryCatalogueRepository } from '@mod-catalogue/infraestructure'
-import { LocalStorageFiltersRepository } from '@mod-filters/infraestructure'
+import { InMemoryCatalogueRepository } from '@mod-catalogue/infrastructure'
+import { LocalStorageFiltersRepository } from '@mod-filters/infrastructure'
 import { CatalogueComponent } from '@sec-catalogue/CatalogueComponent'
 import { ReadingComponent } from '@sec-reading/ReadingComponent'
 import { useMemo } from 'react'

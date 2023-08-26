@@ -12,7 +12,7 @@ interface Props {
 }
 
 export function CatalogueComponent({ repository }: Props) {
-  const [state, setState] = useState<Catalogue>({ books: [], total: 0, avalaible: 0 })
+  const [state, setState] = useState<Catalogue>({ books: [], total: 0, available: 0 })
   const { filtersState } = useFilters()
 
   useEffect(() => {
@@ -21,7 +21,7 @@ export function CatalogueComponent({ repository }: Props) {
 
   return (
     <section className="flex flex-col" data-testid="catalogue-component">
-      <HeaderCatalogue available={state.avalaible} total={state.total} />
+      <HeaderCatalogue available={state.available} total={state.total} />
       <FilterComponent />
       <CatalogueEmpty collection={state.books} />
       <CatalogoBookCollection collection={state.books} />

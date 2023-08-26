@@ -126,26 +126,6 @@ describe('CatalogueComponent', () => {
       })
 
       it('page filters, should render a book list', async () => {
-        // const books = BookMother.createList(10)
-        // const bookFiltered = books.filter((book) => book.pages === books[0].pages)
-        // const state: Catalogue = {
-        //   books,
-        //   total: books.length,
-        //   avalaible: books.length
-        // }
-        // const repository: CatalogueRepository = {
-        //   getCatalogue: vi
-        //     .fn()
-        //     .mockResolvedValueOnce(Promise.resolve(state))
-        //     .mockResolvedValue(
-        //       Promise.resolve({
-        //         books: bookFiltered,
-        //         total: books.length,
-        //         avalaible: bookFiltered.length
-        //       })
-        //     )
-        // }
-
         const count = 5
         const repository = CatalogueRepositoryObjectMother.create({ state: CatalogueObjectMother.create({ count }) })
 

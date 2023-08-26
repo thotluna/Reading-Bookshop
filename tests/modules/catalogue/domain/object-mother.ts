@@ -17,7 +17,7 @@ export class CatalogueObjectMother {
     const catalogue = {
       books: state ? state.books : books,
       total: state ? state.total : books.length,
-      avalaible: state ? state.avalaible : books.length
+      available: state ? state.available : books.length
     }
     return {
       ...catalogue,

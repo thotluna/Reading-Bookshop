@@ -44,7 +44,7 @@ export function Filters() {
         </div>
       </div>
       <div className="flex items-center gap-1">
-        <label htmlFor="search">Busqueda:</label>
+        <label htmlFor="search">Búsqueda:</label>
         <input id="search" type="text" value={search} onChange={(event) => setSearch(event.target.value)} />
         <button className="">
           <SearchIcon width={18} height={18} aria-label="search" />
