@@ -17,7 +17,7 @@ export function ReadingComponent() {
   return (
     <section
       data-testid="reading-component"
-      className={`bg-slate-600 px-8 rounded-2xl self-start min-h-screen ${hidden}`}
+      className={`bg-slate-600 px-8 rounded-2xl self-start pb-8 ${hidden}`}
       onDragOver={() => {
         onDragOver(Zones.READING)
       }}
