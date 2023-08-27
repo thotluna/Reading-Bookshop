@@ -1,4 +1,5 @@
 import { BookBasic } from '@mod-catalogue/domain'
+import { DragComponent } from '@sec-dnd/drag-component'
 import { useDnD } from '@sec-dnd/hooks/useDnd'
 import { useReading } from '@sec-reading/hooks'
 import { Zones } from '@shared/constants'
@@ -10,7 +11,7 @@ interface Props {
 
 export function CatalogoBookCollection({ collection }: Props) {
   const { toggleReading, onSortAndSave } = useReading()
-  const { onDragEnd, onDragOver, onDragStart } = useDnD(onSortAndSave)
+  const { onDragOver } = useDnD()
   if (collection.length === 0) return
   return (
     <section
@@ -21,16 +22,15 @@ export function CatalogoBookCollection({ collection }: Props) {
       }}
     >
       {collection.map((book) => (
-        <BookCatalogueComponent
-          key={book.ISBN}
-          book={book}
-          onAddReading={() => {
-            toggleReading(book)
-          }}
-          onDragStart={onDragStart}
-          onDragOver={onDragOver}
-          onDragEnd={onDragEnd}
-        />
+        <DragComponent key={book.ISBN} book={book} zone={Zones.CATALOGUE} onSortAndSave={onSortAndSave}>
+          <BookCatalogueComponent
+            key={book.ISBN}
+            book={book}
+            onAddReading={() => {
+              toggleReading(book)
+            }}
+          />
+        </DragComponent>
       ))}
     </section>
   )
