@@ -24,6 +24,7 @@ export default defineConfig({
       '@sections': path.resolve(__dirname, './src/sections'),
       '@sec-catalogue': path.resolve(__dirname, './src/sections/catalogue'),
       '@sec-components': path.resolve(__dirname, './src/sections/components'),
+      '@sec-dnd': path.resolve(__dirname, './src/sections/drag-and-drop'),
       '@sec-filters': path.resolve(__dirname, './src/sections/Filters'),
       '@sec-header': path.resolve(__dirname, './src/sections/header'),
       '@sec-panel': path.resolve(__dirname, './src/sections/panel'),

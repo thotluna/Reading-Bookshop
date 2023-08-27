@@ -1,5 +1,5 @@
 import { BookWithPosition } from '@mod-reading/domain/book-with-position'
-import { useDnD } from '@sec-reading/hooks/useDnd'
+import { useDnD } from '@sec-dnd/hooks/useDnd'
 import { useReading } from '..'
 import BookDragAndDrop from './BookDragAndDrop'
 import { BookReadingComponent } from './BookReadingComponent'

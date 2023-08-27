@@ -1,10 +1,10 @@
+import { useDnD } from '@sec-dnd/hooks/useDnd'
 import { usePanel } from '@sec-panel/use-panel'
 import { Zones } from '@shared/constants'
 import { useMemo } from 'react'
 import { useReading } from '.'
 import { ReadingBookCollection } from './components/ReadingBookCollection'
 import { ReadingEmpty } from './components/ReadingEmpty'
-import { useDnD } from './hooks/useDnd'
 
 export function ReadingComponent() {
   const { panel } = usePanel()

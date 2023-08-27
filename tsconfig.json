@@ -31,6 +31,7 @@
       "@mod-reading/*": ["./src/modules/reading/*"],
       "@sec-catalogue/*": ["./src/sections/catalogue/*"],
       "@sec-components/*": ["./src/sections/components/*"],
+      "@sec-dnd/*": ["./src/sections/drag-and-drop/*"],
       "@sec-filters/*": ["./src/sections/Filters/*"],
       "@sec-header/*": ["./src/sections/header/*"],
       "@sec-panel/*": ["./src/sections/panel/*"],

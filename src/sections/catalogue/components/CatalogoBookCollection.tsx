@@ -1,6 +1,6 @@
 import { BookBasic } from '@mod-catalogue/domain'
+import { useDnD } from '@sec-dnd/hooks/useDnd'
 import { useReading } from '@sec-reading/hooks'
-import { useDnD } from '@sec-reading/hooks/useDnd'
 import { Zones } from '@shared/constants'
 import { BookCatalogueComponent } from '..'
 

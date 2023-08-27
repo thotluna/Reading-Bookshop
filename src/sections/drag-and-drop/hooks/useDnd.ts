@@ -1,5 +1,5 @@
 import { BookBasic } from '@mod-catalogue/domain'
-import { dndContext } from '@sec-reading/context/DndContext'
+import { dndContext } from '@sec-dnd/contexts/DndContext'
 import { Zones } from '@shared/constants'
 
 import { useContext } from 'react'
