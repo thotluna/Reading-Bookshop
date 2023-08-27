@@ -17,14 +17,14 @@ export class FiltersStateObjectMother {
   }
 }
 
-type partialFiltersrepository = Partial<FiltersRepository>
+type partialFiltersRepository = Partial<FiltersRepository>
 
 export class FiltersRepositoryObjectMother {
   static create({
     partial,
     state = FiltersStateObjectMother.create({})
   }: {
-    partial?: partialFiltersrepository
+    partial?: partialFiltersRepository
     state?: partialFiltersState
   }): FiltersRepository {
     const repository = {

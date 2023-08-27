@@ -121,7 +121,7 @@ describe('Reading Component', () => {
       fireEvent.click(component)
 
       waitFor(() => {
-        expect(screen.getByText('Todavia no has seleccionado ningun libro para leer.')).toBeInTheDocument()
+        expect(screen.getByText('Todavía no has seleccionado ningún libro para leer.')).toBeInTheDocument()
         expect(screen.getByRole('button', { name: /borrar/i })).toBeInTheDocument()
 
         expect(spy).toBeCalledTimes(1)

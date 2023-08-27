@@ -5,7 +5,7 @@ import { PanelProvider } from '../../../src/sections/panel/panel-provider'
 import { PanelRepositoryObjectMother } from '../../modules/panel/domain/models'
 
 describe('Panel', () => {
-  test('should call to getPanel when initital render', () => {
+  test('should call to getPanel when initial render', () => {
     const repository = PanelRepositoryObjectMother.create({})
 
     const spy = vi.spyOn(repository, 'get')

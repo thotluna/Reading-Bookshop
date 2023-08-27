@@ -23,7 +23,7 @@ export function useReading() {
     [dispatch]
   )
 
-  const excist = useCallback(
+  const exists = useCallback(
     (ISBN: string) => {
       return readingStore.books.some((b: BookWithPosition) => b.ISBN === ISBN)
     },
@@ -32,13 +32,13 @@ export function useReading() {
 
   const toggleReading = useCallback(
     (book: BookBasic) => {
-      if (excist(book.ISBN)) {
+      if (exists(book.ISBN)) {
         delBook({ ...book, position: 0 })
       } else {
         addBook({ ...book, position: 0 })
       }
     },
-    [addBook, delBook, excist]
+    [addBook, delBook, exists]
   )
 
   const saveAllBooks = useCallback(
@@ -57,19 +57,19 @@ export function useReading() {
 
   const onSortAndSave = useCallback(
     (goal: BookBasic, displaced?: BookBasic, zone?: Zones) => {
-      if (zone === Zones.READING && excist(goal.ISBN) && !displaced) return
-      if (zone === Zones.CATALOGUE && !excist(goal.ISBN)) return
+      if (zone === Zones.READING && exists(goal.ISBN) && !displaced) return
+      if (zone === Zones.CATALOGUE && !exists(goal.ISBN)) return
       let books = readingStore.books
-      if (zone === Zones.CATALOGUE && excist(goal.ISBN)) {
+      if (zone === Zones.CATALOGUE && exists(goal.ISBN)) {
         books = books.filter((b) => b.ISBN !== goal.ISBN)
       }
 
-      if (zone === Zones.READING && !excist(goal.ISBN) && !displaced) {
+      if (zone === Zones.READING && !exists(goal.ISBN) && !displaced) {
         books = books.concat({ ...goal, position: 0 })
       }
       if (zone === Zones.READING && displaced) {
         let temp = books
-        if (!excist(goal.ISBN)) {
+        if (!exists(goal.ISBN)) {
           temp = temp.concat({ ...goal, position: 0 })
         }
         const indexGoal = temp.findIndex((b) => b.ISBN === goal.ISBN)
@@ -93,7 +93,7 @@ export function useReading() {
         total: booksSorted.length
       })
     },
-    [excist, readingStore.books, repository, saveAllBooks]
+    [exists, readingStore.books, repository, saveAllBooks]
   )
 
   useEffect(() => {
@@ -130,7 +130,7 @@ export function useReading() {
     addBook,
     delBook,
     saveAllBooks,
-    excist,
+    exists: exists,
     onSortAndSave,
     toggleReading
   }
