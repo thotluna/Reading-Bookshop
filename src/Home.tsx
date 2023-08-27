@@ -1,10 +1,10 @@
 import { InMemoryCatalogueRepository } from '@mod-catalogue/infrastructure'
 import { LocalStorageFiltersRepository } from '@mod-filters/infrastructure'
 import { CatalogueComponent } from '@sec-catalogue/CatalogueComponent'
+import { FiltersProvider } from '@sec-filters/filters-provider'
+import { Header } from '@sec-header/Header'
 import { ReadingComponent } from '@sec-reading/ReadingComponent'
 import { useMemo } from 'react'
-import { Header } from '../src/sections/header/Header'
-import { FiltersProvider } from './sections/Filters/filters-provider'
 
 export function Home() {
   const repository = useMemo(() => InMemoryCatalogueRepository(), [])

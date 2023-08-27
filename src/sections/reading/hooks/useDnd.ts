@@ -1,30 +1,31 @@
 import { BookBasic } from '@mod-catalogue/domain'
-import { dndContext, place } from '@sec-reading/context/DndContext'
+import { dndContext } from '@sec-reading/context/DndContext'
+import { Zones } from '@shared/constants'
 
 import { useContext } from 'react'
 
 export function useDnD(
-  onSortAndSave?: (bookDrag: BookBasic, reciveBook: BookBasic | undefined, placeBook: place | undefined) => void
+  onSortAndSave?: (goal: BookBasic, displace: BookBasic | undefined, zone: Zones | undefined) => void
 ) {
-  const { bookDrag, reciveBook, placeBook } = useContext(dndContext)
+  const { bookDrag, receiveBook: receiveBook, placeBook } = useContext(dndContext)
 
   const onDragStart = (book: BookBasic) => {
     bookDrag.current = book
   }
   const onDragEnter = (book: BookBasic) => {
-    reciveBook.current = book
+    receiveBook.current = book
   }
 
-  const onDragOver = (newPlace: place) => {
+  const onDragOver = (newPlace: Zones) => {
     placeBook.current = newPlace
   }
 
   const onDragEnd = () => {
     if (bookDrag.current === undefined) return
     if (!onSortAndSave) return
-    onSortAndSave(bookDrag.current, reciveBook.current, placeBook.current)
+    onSortAndSave(bookDrag.current, receiveBook.current, placeBook.current)
     bookDrag.current = undefined
-    reciveBook.current = undefined
+    receiveBook.current = undefined
     placeBook.current = undefined
   }
 

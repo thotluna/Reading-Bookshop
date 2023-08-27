@@ -1,4 +1,4 @@
-import { BookCatalogueComponent } from '@sec-catalogue/BookCatalogueComponent'
+import { BookCatalogueComponent } from '@sec-catalogue/components'
 import { render, screen } from '@testing-library/react'
 import { describe, it } from 'vitest'
 import { BookMother } from '../../modules/catalogue/domain/models'

@@ -3,7 +3,7 @@ import { GetReading, SaveStateReading } from '@mod-reading/application'
 import { BookWithPosition, ReadingState } from '@mod-reading/domain'
 import { ITEM_READING } from '@mod-reading/infrastructure'
 import { readingContext } from '@sec-reading/context'
-import { place } from '@sec-reading/context/DndContext'
+import { Zones } from '@shared/constants'
 import { useCallback, useContext, useEffect } from 'react'
 
 export function useReading() {
@@ -56,18 +56,18 @@ export function useReading() {
   )
 
   const onSortAndSave = useCallback(
-    (goal: BookBasic, displaced?: BookBasic, zone?: place) => {
-      if (zone === place.READING && excist(goal.ISBN) && !displaced) return
-      if (zone === place.CATALOGUE && !excist(goal.ISBN)) return
+    (goal: BookBasic, displaced?: BookBasic, zone?: Zones) => {
+      if (zone === Zones.READING && excist(goal.ISBN) && !displaced) return
+      if (zone === Zones.CATALOGUE && !excist(goal.ISBN)) return
       let books = readingStore.books
-      if (zone === place.CATALOGUE && excist(goal.ISBN)) {
+      if (zone === Zones.CATALOGUE && excist(goal.ISBN)) {
         books = books.filter((b) => b.ISBN !== goal.ISBN)
       }
 
-      if (zone === place.READING && !excist(goal.ISBN) && !displaced) {
+      if (zone === Zones.READING && !excist(goal.ISBN) && !displaced) {
         books = books.concat({ ...goal, position: 0 })
       }
-      if (zone === place.READING && displaced) {
+      if (zone === Zones.READING && displaced) {
         let temp = books
         if (!excist(goal.ISBN)) {
           temp = temp.concat({ ...goal, position: 0 })

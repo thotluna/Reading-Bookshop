@@ -1,11 +1,12 @@
 import { BookBasic } from '@mod-catalogue/domain'
+import { Zones } from '@shared/constants'
 import { ReactNode, useRef } from 'react'
-import { dndContext, place } from './DndContext'
+import { dndContext } from './DndContext'
 
 export function DnDProvider({ children }: { children: ReactNode }) {
   const bookDrag = useRef<BookBasic>()
-  const reciveBook = useRef<BookBasic>()
-  const placeBook = useRef<place | undefined>()
+  const receiveBook = useRef<BookBasic>()
+  const placeBook = useRef<Zones | undefined>()
 
-  return <dndContext.Provider value={{ bookDrag, reciveBook, placeBook }}>{children}</dndContext.Provider>
+  return <dndContext.Provider value={{ bookDrag, receiveBook, placeBook }}>{children}</dndContext.Provider>
 }

@@ -1,6 +1,6 @@
 import { ReactComponent as DragAndDrop } from '@assets/drag.svg'
 import { BookWithPosition } from '@mod-reading/domain/book-with-position'
-import { Image } from '../../components/Image'
+import { Image } from '@sec-components/Image'
 import { RemoveButton } from './RemoveButton'
 
 interface Props {

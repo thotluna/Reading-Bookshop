@@ -1,6 +1,6 @@
 import { ReactComponent as HiddenIcon } from '@assets/hide.svg'
 import { ReactComponent as ShowIcon } from '@assets/show.svg'
-import { usePanel } from '../panel/use-panel'
+import { usePanel } from '@sec-panel/use-panel'
 
 export function Header() {
   const { panel, togglePanel } = usePanel()

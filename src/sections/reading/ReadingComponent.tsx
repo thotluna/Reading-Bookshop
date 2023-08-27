@@ -1,9 +1,9 @@
+import { usePanel } from '@sec-panel/use-panel'
+import { Zones } from '@shared/constants'
 import { useMemo } from 'react'
 import { useReading } from '.'
-import { usePanel } from '../panel/use-panel'
 import { ReadingBookCollection } from './components/ReadingBookCollection'
 import { ReadingEmpty } from './components/ReadingEmpty'
-import { place } from './context/DndContext'
 import { useDnD } from './hooks/useDnd'
 
 export function ReadingComponent() {
@@ -19,7 +19,7 @@ export function ReadingComponent() {
       data-testid="reading-component"
       className={`bg-slate-600 px-8 rounded-2xl self-start min-h-screen ${hidden}`}
       onDragOver={() => {
-        onDragOver(place.READING)
+        onDragOver(Zones.READING)
       }}
     >
       <header className="px-2 md:px-8 md:py-4 flex flex-wrap gap-2 items-end justify-start">

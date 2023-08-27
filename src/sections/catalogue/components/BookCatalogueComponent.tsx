@@ -1,13 +1,14 @@
 import { BookBasic } from '@mod-catalogue/domain'
 import { Image } from '@sec-components'
-import { place } from '@sec-reading/context/DndContext'
+
+import { Zones } from '@shared/constants'
 import ReadButton from './ReadButton'
 
 interface Props {
   book: BookBasic
   onAddReading: () => void
   onDragStart: (book: BookBasic) => void
-  onDragOver: (place: place) => void
+  onDragOver: (place: Zones) => void
   onDragEnd: () => void
 }
 
@@ -20,7 +21,7 @@ export function BookCatalogueComponent({ book, onAddReading, onDragStart, onDrag
       onDragStart={() => onDragStart(book)}
       onDragOver={(e) => {
         e.preventDefault()
-        onDragOver(place.READING)
+        onDragOver(Zones.READING)
       }}
       onDragEnd={onDragEnd}
     >

@@ -1,11 +1,11 @@
-import { place } from '@sec-reading/context/DndContext'
+import { Zones } from '@shared/constants'
 
 interface Props<T> {
   book: T
   onDragStart: (book: T) => void
   onDragEnter: (book: T) => void
   onDragEnd: () => void
-  onDragOver: (place: place) => void
+  onDragOver: (place: Zones) => void
   children: JSX.Element
 }
 
@@ -25,7 +25,7 @@ function BookDragAndDrop<T>({ book, onDragEnd, onDragEnter, onDragStart, onDragO
       }}
       onDragOver={(e) => {
         e.preventDefault()
-        onDragOver(place.READING)
+        onDragOver(Zones.READING)
       }}
     >
       {children}

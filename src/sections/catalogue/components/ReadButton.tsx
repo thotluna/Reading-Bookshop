@@ -1,5 +1,5 @@
 import { ReactComponent as Bookmark } from '@assets/bookmark.svg'
-import CircleButton from '../components/CircleButton'
+import CircleButton from '@sec-components/CircleButton'
 
 interface Props {
   title: string

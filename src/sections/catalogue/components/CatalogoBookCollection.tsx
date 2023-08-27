@@ -1,8 +1,8 @@
 import { BookBasic } from '@mod-catalogue/domain'
-import { place } from '@sec-reading/context/DndContext'
 import { useReading } from '@sec-reading/hooks'
 import { useDnD } from '@sec-reading/hooks/useDnd'
-import { BookCatalogueComponent } from '.'
+import { Zones } from '@shared/constants'
+import { BookCatalogueComponent } from '..'
 
 interface Props {
   collection: BookBasic[]
@@ -17,7 +17,7 @@ export function CatalogoBookCollection({ collection }: Props) {
       className="w-full grid grid-cols-auto gap-4 justify-items-center place-content-start "
       data-testid="catalogue-collection"
       onDragOver={() => {
-        onDragOver(place.CATALOGUE)
+        onDragOver(Zones.CATALOGUE)
       }}
     >
       {collection.map((book) => (

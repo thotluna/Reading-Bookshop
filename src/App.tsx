@@ -2,11 +2,11 @@ import { PanelRepository } from '@mod-panel/domain'
 import { LocalStoragePanelRepository } from '@mod-panel/infrastructure'
 import { ReadingRepository } from '@mod-reading/domain'
 import { LocalStorageReadingRepository } from '@mod-reading/infrastructure'
+import { PanelProvider } from '@sec-panel/panel-provider'
 import { ReadingProvider } from '@sec-reading/context'
 import { DnDProvider } from '@sec-reading/context/DnDProvider'
 import { useMemo } from 'react'
 import { Home } from './Home'
-import { PanelProvider } from './sections/panel/panel-provider'
 
 function App() {
   const readingRepository: ReadingRepository = useMemo(() => LocalStorageReadingRepository(), [])
