@@ -9,7 +9,7 @@ interface Props {
   collection: BookBasic[]
 }
 
-export function CatalogoBookCollection({ collection }: Props) {
+export function CatalogueBookCollection({ collection }: Props) {
   const { toggleReading, onSortAndSave } = useReading()
   const { onDragOver } = useDnD()
   if (collection.length === 0) return

@@ -3,7 +3,7 @@ import { Catalogue, CatalogueRepository } from '@mod-catalogue/domain'
 import { FilterComponent } from '@sec-filters/filters'
 import { useFilters } from '@sec-filters/use-filters'
 import { useEffect, useState } from 'react'
-import { CatalogoBookCollection, CatalogueEmpty, HeaderCatalogue } from './components'
+import { CatalogueBookCollection, CatalogueEmpty, HeaderCatalogue } from './components'
 
 interface Props {
   repository: CatalogueRepository
@@ -22,7 +22,7 @@ export function CatalogueComponent({ repository }: Props) {
       <HeaderCatalogue available={state.available} total={state.total} />
       <FilterComponent />
       <CatalogueEmpty collection={state.books} />
-      <CatalogoBookCollection collection={state.books} />
+      <CatalogueBookCollection collection={state.books} />
     </section>
   )
 }

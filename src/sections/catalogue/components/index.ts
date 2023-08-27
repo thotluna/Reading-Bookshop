@@ -1,6 +1,6 @@
 export * from './BookCatalogueComponent'
 export * from './BooksAvailable'
-export * from './CatalogoBookCollection'
+export * from './CatalogueBookCollection'
 export * from './CatalogueEmpty'
 export * from './HeaderCatalogue'
 export * from './ReadButton'
