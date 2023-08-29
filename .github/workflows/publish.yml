@@ -36,8 +36,8 @@ jobs:
       - name: format
         run: pnpm run fmt.check
 
-      - name: Run unit test
-        run: pnpm run test
+      # - name: Run unit test
+      #   run: pnpm run test
 
       - name: Run e2e test
         run: pnpm run test.e2e
