@@ -30,6 +30,9 @@ jobs:
       - name: Install dependencies
         run: pnpm install --no-frozen-lockfile --no-optional
 
+      - name: Install swc
+        run: pnpm install -D vite-plugin-svgr
+
       - name: lint
         run: pnpm run lint
 
