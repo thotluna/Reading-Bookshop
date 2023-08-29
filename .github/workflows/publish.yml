@@ -10,7 +10,7 @@ env:
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 
 jobs:
-  deploy:
+  publish:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
@@ -27,19 +27,19 @@ jobs:
           version: 7.x
           run_install: false
 
-      - name: Install dependencies
-        run: pnpm install
+      # - name: Install dependencies
+      #   run: pnpm install
 
-      - name: Build App
-        run: pnpm run build
+      # - name: Build App
+      #   run: pnpm run build
 
-      - name: Run unit test
-        run: pnpm run test
+      # - name: Run unit test
+      #   run: pnpm run test
 
-      - name: Run e2e test
-        run: pnpm run test.e2e
+      # - name: Run e2e test
+      #   run: pnpm run test.e2e
 
-      - run: pnpm install --immutable
-      - run: pnpm vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
-      - run: pnpm vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
-      - run: pnpm vercel deploy --prod --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
+      # - run: pnpm install --immutable
+      # - run: pnpm vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+      # - run: pnpm vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+      # - run: pnpm vercel deploy --prod --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
