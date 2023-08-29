@@ -4,7 +4,7 @@ import { describe, it } from 'vitest'
 import { BookMother } from '../../modules/catalogue/domain/models'
 
 describe.only('BookCatalogue', () => {
-  it.only('should render image', async () => {
+  it('should render image', async () => {
     const book = BookMother.createList(1)[0]
 
     render(<BookCatalogueComponent book={book} onAddReading={() => {}} />)
@@ -12,7 +12,7 @@ describe.only('BookCatalogue', () => {
     const image = await screen.findByAltText(`Título: ${book.title}`)
     expect(image).toBeInTheDocument()
   })
-  it.only('should render read button', async () => {
+  it('should render read button', async () => {
     const book = BookMother.createList(1)[0]
 
     render(<BookCatalogueComponent book={book} onAddReading={() => {}} />)
