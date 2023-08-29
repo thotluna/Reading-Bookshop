@@ -49,6 +49,7 @@ jobs:
         run: npx playwright install --with-deps
       - name: Run Playwright tests
         run: npx playwright test
+        wait-on: 'http://localhost:5173'
       - uses: actions/upload-artifact@v3
         if: always()
         with:
