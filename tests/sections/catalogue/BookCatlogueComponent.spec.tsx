@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react'
 import { describe, it } from 'vitest'
 import { BookMother } from '../../modules/catalogue/domain/models'
 
-describe.only('BookCatalogue', () => {
+describe('BookCatalogue', () => {
   it('should render image', async () => {
     const book = BookMother.createList(1)[0]
 
