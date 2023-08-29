@@ -11,7 +11,6 @@ env:
 
 jobs:
   job1:
-    Unit Test:
       runs-on: ubuntu-latest
       steps:
         - name: Checkout repo
@@ -44,7 +43,6 @@ jobs:
           run: pnpm run test
 
   job2:
-    e2e_Test:
       runs-on: ubuntu-latest
       steps:
         - name: Checkout repo
@@ -76,7 +74,6 @@ jobs:
             retention-days: 30
 
   job3:
-    publish:
       needs: [job1, job2]
       runs-on: ubuntu-latest
       steps:
