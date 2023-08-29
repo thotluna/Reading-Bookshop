@@ -19,7 +19,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          version: 18.x
+          node-version: 18.x
 
       - uses: pnpm/action-setup@v2
         name: Install pnpm
@@ -36,15 +36,14 @@ jobs:
       - name: format
         run: pnpm run fmt.check
 
+      - name: Run unit test
+        run: pnpm run test
+
+      - name: Run e2e test
+        run: pnpm run test.e2e
+
       # - name: Build App
       #   run: pnpm run build
-
-      # - name: Run unit test
-      #   run: pnpm run test
-
-      # - name: Run e2e test
-      #   run: pnpm run test.e2e
-
       # - run: pnpm install --immutable
       # - run: pnpm vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
       # - run: pnpm vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
