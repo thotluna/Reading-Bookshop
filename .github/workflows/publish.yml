@@ -10,55 +10,96 @@ env:
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 
 jobs:
-  publish:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
+  job1:
+    Unit Test:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Checkout repo
+          uses: actions/checkout@v3
 
-      - name: Setup Node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18.x
+        - name: Setup Node
+          uses: actions/setup-node@v3
+          with:
+            node-version: 18.x
 
-      - uses: pnpm/action-setup@v2
-        name: Install pnpm
-        with:
-          version: 7.x
-          run_install: false
+        - uses: pnpm/action-setup@v2
+          name: Install pnpm
+          with:
+            version: 7.x
+            run_install: false
 
-      - name: Install dependencies
-        run: pnpm install --no-frozen-lockfile --no-optional
+        - name: Install dependencies
+          run: pnpm install --no-frozen-lockfile --no-optional
 
-      - name: Install swc
-        run: pnpm install -D vite-plugin-svgr
+        - name: Install swc
+          run: pnpm install -D vite-plugin-svgr
 
-      - name: lint
-        run: pnpm run lint
+        - name: lint
+          run: pnpm run lint
 
-      - name: format
-        run: pnpm run fmt.check
+        - name: format
+          run: pnpm run fmt.check
 
-      - name: build
-        run: pnpm run build
+        - name: Run unit test
+          run: pnpm run test
 
-      - name: Run unit test
-        run: pnpm run test
+  job2:
+    e2e_Test:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Checkout repo
+          uses: actions/checkout@v3
 
-      - name: Install Playwright Browsers
-        run: npx playwright install --with-deps
-      - name: Run Playwright tests
-        run: npx playwright test
-      - uses: actions/upload-artifact@v3
-        if: always()
-        with:
-          name: playwright-report
-          path: playwright-report/
-          retention-days: 30
+        - name: Setup Node
+          uses: actions/setup-node@v3
+          with:
+            node-version: 18.x
 
-      - name: Build App
-        run: pnpm run build
-      - run: pnpm install
-      - run: pnpm vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
-      - run: pnpm vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
-      - run: pnpm vercel deploy --prod --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
+        - uses: pnpm/action-setup@v2
+          name: Install pnpm
+          with:
+            version: 7.x
+            run_install: false
+
+        - name: Install dependencies
+          run: pnpm install --no-frozen-lockfile --no-optional
+
+        - name: Install Playwright Browsers
+          run: npx playwright install --with-deps
+        - name: Run Playwright tests
+          run: npx playwright test
+        - uses: actions/upload-artifact@v3
+          if: always()
+          with:
+            name: playwright-report
+            path: playwright-report/
+            retention-days: 30
+
+  job3:
+    publish:
+      needs: [job1, job2]
+      runs-on: ubuntu-latest
+      steps:
+        - name: Checkout repo
+          uses: actions/checkout@v3
+
+        - name: Setup Node
+          uses: actions/setup-node@v3
+          with:
+            node-version: 18.x
+
+        - uses: pnpm/action-setup@v2
+          name: Install pnpm
+          with:
+            version: 7.x
+            run_install: false
+
+        - name: Install dependencies
+          run: pnpm install --no-frozen-lockfile --no-optional
+
+        - name: Build App
+          run: pnpm run build
+        - run: pnpm install
+        - run: pnpm vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+        - run: pnpm vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+        - run: pnpm vercel deploy --prod --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
