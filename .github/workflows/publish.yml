@@ -56,9 +56,9 @@ jobs:
           path: playwright-report/
           retention-days: 30
 
-      # - name: Build App
-      #   run: pnpm run build
-      # - run: pnpm install --immutable
-      # - run: pnpm vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
-      # - run: pnpm vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
-      # - run: pnpm vercel deploy --prod --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Build App
+        run: pnpm run build
+      - run: pnpm install --immutable
+      - run: pnpm vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+      - run: pnpm vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+      - run: pnpm vercel deploy --prod --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
