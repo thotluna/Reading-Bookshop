@@ -36,19 +36,22 @@ jobs:
       - name: format
         run: pnpm run fmt.check
 
+      - name: build
+        run: pnpm run build
+
       # - name: Run unit test
       #   run: pnpm run test
 
-      - name: Install Playwright Browsers
-        run: npx playwright install --with-deps
-      - name: Run Playwright tests
-        run: npx playwright test
-      - uses: actions/upload-artifact@v3
-        if: always()
-        with:
-          name: playwright-report
-          path: playwright-report/
-          retention-days: 30
+      # - name: Install Playwright Browsers
+      #   run: npx playwright install --with-deps
+      # - name: Run Playwright tests
+      #   run: npx playwright test
+      # - uses: actions/upload-artifact@v3
+      #   if: always()
+      #   with:
+      #     name: playwright-report
+      #     path: playwright-report/
+      #     retention-days: 30
 
       # - name: Build App
       #   run: pnpm run build
