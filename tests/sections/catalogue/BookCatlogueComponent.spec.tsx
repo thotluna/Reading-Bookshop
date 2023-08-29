@@ -9,7 +9,7 @@ describe('BookCatalogue', () => {
 
     render(<BookCatalogueComponent book={book} onAddReading={() => {}} />)
 
-    const image = await screen.findByAltText(`Títul: ${book.title}`)
+    const image = await screen.findByAltText(`Título: ${book.title}`)
     expect(image).toBeInTheDocument()
   })
   it('should render read button', async () => {
